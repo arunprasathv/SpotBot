@@ -1,0 +1,49 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "items": [
+                      {
+                        "type": "Image",
+                        "url": "c:\\\\hack\\comcast-logo.png",
+                        "size": "Stretch",
+                        "width": "100px"
+                      }
+                    ],
+                    "width": 30
+                },
+                {
+                    "type": "Column",
+                    "items": [
+                        {
+                            "type": "Container",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "horizontalAlignment": "Left",
+                                    "spacing": "Medium",
+                                    "weight": "Bolder",
+                                    "text": "Spotlight Customer Support",
+                                    "wrap": true
+                                },
+                              {
+                                "type": "TextBlock",
+                                "text": "Hi, I'm the Virtual Assistant,* a chatbot designed to help you. Ask me your questions about Self Service Customers.  ",
+                                "isSubtle": "yes",
+                                "wrap": true
+                              }
+                            ]
+                        }
+                    ],
+                    "width": 70
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

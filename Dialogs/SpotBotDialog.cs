@@ -1,5 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
+﻿ 
 
 using System.Collections.Generic;
 using System.Threading;
@@ -15,15 +14,16 @@ namespace Hackathon.SpotBot
 {
     public class SpotBotDialog : ComponentDialog
     {
-        private readonly IStatePropertyAccessor<SupportProfile> _userProfileAccessor;
+        private readonly IStatePropertyAccessor<CustomerSupportTemplateState> _userProfileAccessor;
         private readonly string[] _cards =
  {
             Path.Combine(".", "Resources", "order.json"),
         };
-        public SpotBotDialog(UserState userState)
+        public SpotBotDialog(IStatePropertyAccessor<CustomerSupportTemplateState> _stateAccessor
+)
             : base(nameof(SpotBotDialog))
         {
-            _userProfileAccessor = userState.CreateProperty<SupportProfile>("SupportProfile");
+            _userProfileAccessor = _stateAccessor;//  userState.CreateProperty<SupportProfile>("SupportProfile");
 
             // This array defines how the Waterfall will execute.
             var waterfallSteps = new WaterfallStep[]
@@ -32,6 +32,7 @@ namespace Hackathon.SpotBot
                 OptionsStepAsync,
                 OptionConfirmStepAsync,
                 MoreOrderStepAsync,
+                OptionConfirmStepAsync,
                 //ConfirmStepAsync,
                 SummaryStepAsync,
             };
@@ -54,7 +55,7 @@ namespace Hackathon.SpotBot
             return await stepContext.PromptAsync(nameof(ChoicePrompt),
                 new PromptOptions
                 {
-                    Prompt =  MessageFactory.Text("I can help with the following ?"),
+                    Prompt =  MessageFactory.Text("Not sure where to start? Select from these commonly asked questions to start a conversation:"),
                     Choices = ChoiceFactory.ToChoices(new List<string> { "About Order", "Payment", "Order Performance" }),
                 }, cancellationToken);
         }
@@ -76,21 +77,28 @@ namespace Hackathon.SpotBot
             //turnContext.Activity.Attachments = new List<Attachment>() { cardAttachment };
             await stepContext.Context.SendActivityAsync(MessageFactory.Attachment(cardAttachment), cancellationToken);
             // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions { Prompt = MessageFactory.Text("Would you like to get another order ?") }, cancellationToken);
+            return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions { Prompt = MessageFactory.Text("Was the information I provided helpful?") }, cancellationToken);
         }
 
         private async Task<DialogTurnResult> MoreOrderStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             if ((bool)stepContext.Result)
             {
-                return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("Here are the Order Details.") }, cancellationToken);
+                //return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("Good! I'm glad I was able to help.") }, cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Good! I'm glad I was able to help"), cancellationToken);
+                return await stepContext.PromptAsync(nameof(ChoicePrompt),
+                new PromptOptions
+                {
+                    Prompt = MessageFactory.Text("Do you have more queries ?"),
+                    Choices = ChoiceFactory.ToChoices(new List<string> { "About Order", "Payment", "Order Performance" }),
+                }, cancellationToken);
             }
             else
             {
                 return await stepContext.PromptAsync(nameof(ChoicePrompt),
                  new PromptOptions
                  {
-                     Prompt = MessageFactory.Text("Please select the followng options"),
+                     Prompt = MessageFactory.Text("Sorry, I couldn't help you, please select the options below again"),
                      Choices = ChoiceFactory.ToChoices(new List<string> { "About Order", "Payment", "Order Performance" }),
                  }, cancellationToken);
                
@@ -106,7 +114,7 @@ namespace Hackathon.SpotBot
         {
             if ((bool)stepContext.Result)
             {
-                 var userProfile = await _userProfileAccessor.GetAsync(stepContext.Context, () => new SupportProfile(), cancellationToken);
+                 var userProfile = await _userProfileAccessor.GetAsync(stepContext.Context, () => new CustomerSupportTemplateState(), cancellationToken);
 
                 userProfile.SelectedOption = (string)stepContext.Values["selectedOption"];
                 userProfile.AdvertiserName = (string)stepContext.Values["advname"];

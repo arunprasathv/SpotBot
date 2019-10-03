@@ -1,5 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
+﻿ 
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -38,9 +37,10 @@ namespace Hackathon.SpotBot
                 // To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
-                    var reply = MessageFactory.Text("Welcome to SpotBot, your virtual assistant."
-                        + " This bot will will help you to find answers  about any queries related to Advertiser."
-                        + " Please type anything to get started.");
+                    var reply = MessageFactory.Text("  Hi, I'm the Virtual Assistant,* a chatbot designed to help you. Ask me your questions about Self Service Customers.");
+                    //var reply = MessageFactory.Text("Welcome to SpotBot, your virtual assistant."
+                    //    + " This bot will will help you to find answers  about any queries related to Advertiser."
+                    //    + " Please type anything to get started.");
 
                     await turnContext.SendActivityAsync(reply, cancellationToken);
                 }
