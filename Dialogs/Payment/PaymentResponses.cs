@@ -49,7 +49,7 @@ namespace Hackathon.SpotBot
                 {
                     new AdaptiveFact("Order #:", paymentDetails.OrderNumber.ToString()),
                     new AdaptiveFact("Order GUID:", paymentDetails.OrderGuid),
-                    new AdaptiveFact("Payment Amount:", paymentDetails.Amount.ToString("$")),
+                    new AdaptiveFact("Payment Amount:", paymentDetails.Amount.ToString("C")),
                     new AdaptiveFact("Payment Status", paymentDetails.Decision),
                     new AdaptiveFact("Card Name", paymentDetails.CardName),
                     new AdaptiveFact("Card Number",paymentDetails.CardNumber??"1234"),

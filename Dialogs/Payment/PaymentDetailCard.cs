@@ -37,7 +37,7 @@ namespace Hackathon.SpotBot
         {
             return await stepContext.PromptAsync($"{nameof(CheckOrderStatusDialog)}.orderNumber", new PromptOptions
             {
-                Prompt = MessageFactory.Text("I am happy to help. Could you please provide the order number?")
+                Prompt = MessageFactory.Text("I am happy to help. Could you please provide the order id?")
                 //RetryPrompt = MessageFactory.Text("The value entered must be between the hours of 9 am and 5 pm.")
             }, cancellationToken);
         }
