@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dialogs\Main\Resources\comcast-logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Dialogs\Main\Resources\comcast-logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AdaptiveCards" Version="1.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Bot.Builder" Version="4.5.2" />

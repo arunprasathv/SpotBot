@@ -9,7 +9,7 @@
                     "items": [
                       {
                         "type": "Image",
-                        "url": "c:\\\\hack\\comcast-logo.png",
+                        "url": ".\\comcast-logo.png",
                         "size": "Stretch",
                         "width": "100px"
                       }
