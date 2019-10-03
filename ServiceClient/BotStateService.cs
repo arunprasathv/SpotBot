@@ -21,6 +21,7 @@ namespace Hackathon.SpotBot
 
         // Accessors
         public IStatePropertyAccessor<Order> OrderDataAccessor { get; set; }
+        public IStatePropertyAccessor<Payment> PaymentDataAccessor { get; set; }
         //public IStatePropertyAccessor<ConversationData> ConversationDataAccessor { get; set; }
         public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; set; }
         #endregion

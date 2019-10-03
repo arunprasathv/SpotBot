@@ -44,6 +44,10 @@ namespace Hackathon.SpotBot
                 TrackingLink = "https://tools.usps.com/go/TrackConfirmAction",
             };
         }
-         
+
+        public Payment GetPaymentDetails(string orderId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

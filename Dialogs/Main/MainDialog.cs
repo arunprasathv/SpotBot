@@ -21,7 +21,7 @@ namespace Hackathon.SpotBot
         private MainResponses _responder = new MainResponses();
         private readonly BotStateService _botStateService;
 
-        public MainDialog(BotStateService botStateService,IBotServices services, ConversationState conversationState, UserState userState)
+        public MainDialog(BotStateService botStateService, IBotServices services, ConversationState conversationState, UserState userState)
             : base(nameof(MainDialog))
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
@@ -44,16 +44,16 @@ namespace Hackathon.SpotBot
             };
 
             // Add Named Dialogs
-        //    AddDialog(new GreetingDialog($"{nameof(MainDialog)}.greeting", _botStateService));
-          //  AddDialog(new BugReportDialog($"{nameof(MainDialog)}.bugReport", _botStateService));
+            //    AddDialog(new GreetingDialog($"{nameof(MainDialog)}.greeting", _botStateService));
+            //  AddDialog(new BugReportDialog($"{nameof(MainDialog)}.bugReport", _botStateService));
 
             AddDialog(new WaterfallDialog($"{nameof(MainDialog)}.mainFlow", waterfallSteps));
 
             // Set the starting Dialog
             InitialDialogId = $"{nameof(MainDialog)}.mainFlow";
         }
-         
- 
+
+
         private async Task<DialogTurnResult> InitialStepAsync(DialogContext stepContext, CancellationToken cancellationToken = default(CancellationToken))
         {
             var routeResult = EndOfTurn;
@@ -69,8 +69,12 @@ namespace Hackathon.SpotBot
 
             if (topIntent == "Order Details")
             {
-                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Order", null, cancellationToken);
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Order", null, cancellationToken);
                 //routeResult = await dc.BeginDialogAsync(nameof(CheckOrderStatusDialog));
+            }
+            else if (topIntent == "Payment")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Payment", null, cancellationToken);
             }
             else
             {
@@ -86,7 +90,7 @@ namespace Hackathon.SpotBot
         //protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         //{
         //    var routeResult = EndOfTurn;
-            
+
         //    // Check dispatch result
         //    var dispatchResult = await _services.Dispatch.RecognizeAsync(dc.Context,  CancellationToken.None);
         //    // var topIntent = dispatchResult.GetTopScoringIntent();
@@ -121,7 +125,8 @@ namespace Hackathon.SpotBot
             //AddDialog(new GreetingDialog($"{nameof(MainDialog)}.greeting", _botStateService));
             //AddDialog(new BugReportDialog($"{nameof(MainDialog)}.bugReport", _botStateService));
 
-            AddDialog(new CheckOrderStatusDialog($"{nameof(MainDialog)}.Order", _botStateService,_services));
+            AddDialog(new CheckOrderStatusDialog($"{nameof(MainDialog)}.Order", _botStateService, _services));
+            AddDialog(new CheckPaymentDialog($"{nameof(MainDialog)}.Payment", _botStateService, _services));
         }
     }
 }
