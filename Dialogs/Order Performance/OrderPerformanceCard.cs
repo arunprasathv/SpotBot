@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace Hackathon.SpotBot
 {
-    public class CheckPaymentDialog : ComponentDialog
+    public class CheckOrderPerformanceDialog : ComponentDialog
     {
         private IServiceClient _client;
         private IBotServices _services;
         private readonly BotStateService _botStateService;
-        private PaymentResponses _responder = new PaymentResponses();
 
-        public CheckPaymentDialog(string dialogId, BotStateService botStateService, IBotServices services) : base(dialogId)
+        OrderPerformanceResponses _responder = new OrderPerformanceResponses();
+
+        public CheckOrderPerformanceDialog(string dialogId, BotStateService botStateService, IBotServices services) : base(dialogId)
         {
             _client = new ServiceClient();
             _services = services;
@@ -25,31 +26,31 @@ namespace Hackathon.SpotBot
             var checkPayment = new WaterfallStep[]
             {
                 PromptForOrderNumber,
-                ShowPaymentDetails
+                ShowOrderPerformance
             };
 
-            InitialDialogId = $"{nameof(CheckPaymentDialog)}.mainFlow";
-            AddDialog(new WaterfallDialog($"{nameof(CheckPaymentDialog)}.mainFlow", checkPayment));
-            AddDialog(new TextPrompt($"{nameof(CheckPaymentDialog)}.orderNumber"));
+            InitialDialogId = $"{nameof(CheckOrderPerformanceDialog)}.mainFlow";
+            AddDialog(new WaterfallDialog($"{nameof(CheckOrderPerformanceDialog)}.mainFlow", checkPayment));
+            AddDialog(new TextPrompt($"{nameof(CheckOrderPerformanceDialog)}.orderNumber"));
         }
 
         private async Task<DialogTurnResult> PromptForOrderNumber(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            return await stepContext.PromptAsync($"{nameof(CheckPaymentDialog)}.orderNumber", new PromptOptions
+            return await stepContext.PromptAsync($"{nameof(CheckOrderPerformanceDialog)}.orderNumber", new PromptOptions
             {
                 Prompt = MessageFactory.Text("I am happy to help. Could you please provide the order id?")
                 //RetryPrompt = MessageFactory.Text("The value entered must be between the hours of 9 am and 5 pm.")
             }, cancellationToken);
         }
 
-        private async Task<DialogTurnResult> ShowPaymentDetails(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> ShowOrderPerformance(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             string orderId = (string)stepContext.Result;
 
-            var paymentDetails = _client.GetPaymentDetails(orderId);
+            var orderPerformance = _client.GetOrderPerformance(orderId);
 
-            await _responder.ReplyWith(stepContext.Context, "Thank you. Here is your order status:");
-            await _responder.ReplyWith(stepContext.Context, PaymentResponses.ResponseIds.PaymentStatusCard, paymentDetails);
+            await _responder.ReplyWith(stepContext.Context, "Thank you. Here is your order performance:");
+            await _responder.ReplyWith(stepContext.Context, OrderPerformanceResponses.ResponseIds.OrderPerformanceCard, orderPerformance);
 
             return await stepContext.EndDialogAsync();
         }

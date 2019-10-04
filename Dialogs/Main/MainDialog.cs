@@ -76,6 +76,10 @@ namespace Hackathon.SpotBot
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Payment", null, cancellationToken);
             }
+            else if (topIntent == "Order Performance")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.OrderPerformance", null, cancellationToken);
+            }
             else
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Order", null, cancellationToken);
@@ -127,6 +131,7 @@ namespace Hackathon.SpotBot
 
             AddDialog(new CheckOrderStatusDialog($"{nameof(MainDialog)}.Order", _botStateService, _services));
             AddDialog(new CheckPaymentDialog($"{nameof(MainDialog)}.Payment", _botStateService, _services));
+            AddDialog(new CheckOrderPerformanceDialog($"{nameof(MainDialog)}.OrderPerformance", _botStateService, _services));
         }
     }
 }

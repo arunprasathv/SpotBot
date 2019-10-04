@@ -45,6 +45,11 @@ namespace Hackathon.SpotBot
             };
         }
 
+        public OrderPerformance GetOrderPerformance(string orderId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Payment GetPaymentDetails(string orderId)
         {
             throw new NotImplementedException();

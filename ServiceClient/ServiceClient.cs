@@ -20,10 +20,25 @@ namespace Hackathon.SpotBot
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
 
-            request.AddHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwMTI5OTEwLCJuYmYiOjE1NzAxMjk5MTAsImV4cCI6MTU3MDEzMzgxMCwiYWlvIjoiNDJWZ1lQam96LzBnd3VqTC9sZlBOMy9lVTN1VEF3QT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiJDbHpULTRweHFVcXVhOG01MnRRYkFBIiwidmVyIjoiMS4wIn0.EFyXc_CKQ51mY1CIzepBfb7O07ntL6PH4QVDN4vlskzk4XEYFfbLm-Sqzl-Nuh-NG_r2yUn8aiei04mTEnTmdVtNi1oy_rbtr1YW5exGJ6wiU6CcHwxQsgwHRA0R825C_tNdUd4glGJyugpTCMNCPKsH8HxSUos7-3od7BccOC6M-2LGPWOXZweyBo620CQd0nHKwY2ymgFyCDuS9rFRJaAtDZ0HHKpCRNbgzXP0NzD82WbksnRGZ3DZCbx5ZAdMkSQrbSk6YanfvhATYye1yzccepWR_VJ8P69WkEvOjpzg3QefnvjHREBoAfoN8BpO9Xw2vBoj97WHLca6CQiadg");
+            request.AddHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwMjA3MjI5LCJuYmYiOjE1NzAyMDcyMjksImV4cCI6MTU3MDIxMTEyOSwiYWlvIjoiNDJWZ1lQaXpmRHJYd1ZOM1JCNnU0Qk9lVjNOM0JnQT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiI3YzhtQ1V4eFIwNldXeDAwcFZGWEFBIiwidmVyIjoiMS4wIn0.X4FAJmA2TGe3gwnss2caMRoOknefKz1XbGXGxYmCN3670oEv3idsO6mC7ZLEy_nYymhwEzc1oJDZM0F0qo5Sseg7fWX8RbSdWbNc79B69RXj8963qCyYYHHqDaV8d93gpaeIknp_zDi6FUOQz4Y8yC2UDuaTXDKWvRgCfWaIRpt1UTuuSDm0ij5iVJ8BwmcWIBFCNAz6qOcLLHsu9MXYIAhclMR9AXUTiANm-DLYG9emw1H2gPJUqP8YUxQx2eKj-FA_NCOLzBukjvdO0W2TvpE0fofPJp_OSy8_WaTs35tzE5Gj2rUXwLiyOjl5xlCIBJoj4dtVKOr2TxUITmQuIg");
             request.AddHeader("Content-Type", "application/json");
-                                  
+
             var response = client.Execute<Payment>(request);
+
+            return response.Data;
+        }
+
+        public OrderPerformance GetOrderPerformance(string orderId)
+        {
+            string url = $"https://ssbdevsimpleapis.ssedgedevase.p.azurewebsites.net/api/v1/order/performance/138477ff-1341-5ec6-d350-f1185db9b5f6/{orderId}?code=U4cDpkQc3OTkKK1JBnOYUzz/PTDyrUlYq0uKp5vDaKuP6ifMzztJSw==";
+
+            var client = new RestClient(url);
+            var request = new RestRequest(Method.GET);
+
+            request.AddHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwMjA3MjI5LCJuYmYiOjE1NzAyMDcyMjksImV4cCI6MTU3MDIxMTEyOSwiYWlvIjoiNDJWZ1lQaXpmRHJYd1ZOM1JCNnU0Qk9lVjNOM0JnQT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiI3YzhtQ1V4eFIwNldXeDAwcFZGWEFBIiwidmVyIjoiMS4wIn0.X4FAJmA2TGe3gwnss2caMRoOknefKz1XbGXGxYmCN3670oEv3idsO6mC7ZLEy_nYymhwEzc1oJDZM0F0qo5Sseg7fWX8RbSdWbNc79B69RXj8963qCyYYHHqDaV8d93gpaeIknp_zDi6FUOQz4Y8yC2UDuaTXDKWvRgCfWaIRpt1UTuuSDm0ij5iVJ8BwmcWIBFCNAz6qOcLLHsu9MXYIAhclMR9AXUTiANm-DLYG9emw1H2gPJUqP8YUxQx2eKj-FA_NCOLzBukjvdO0W2TvpE0fofPJp_OSy8_WaTs35tzE5Gj2rUXwLiyOjl5xlCIBJoj4dtVKOr2TxUITmQuIg");
+            request.AddHeader("Content-Type", "application/json");
+
+            var response = client.Execute<OrderPerformance>(request);
 
             return response.Data;
         }
