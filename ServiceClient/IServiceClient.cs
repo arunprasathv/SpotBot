@@ -9,6 +9,6 @@ namespace Hackathon.SpotBot
     {
         Order GetOrderByNumber(string id);
         Payment GetPaymentDetails(string orderId);
-        OrderPerformance GetOrderPerformance(string orderId);
+        OrderPerformance GetOrderPerformance(string orderId, string selfServiceId);
     }
 }
