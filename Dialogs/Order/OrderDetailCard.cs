@@ -81,7 +81,7 @@ namespace Hackathon.SpotBot
            // var order = await _botStateService.OrderDataAccessor.GetAsync(stepContext.Context, () => new Order());
            // var order = state;
 
-            await _responder.ReplyWith(stepContext.Context, "Thank you. Here is your order status:");
+           // await _responder.ReplyWith(stepContext.Context, "Thank you. Here is your order status:");
             //await _responder.ReplyWith(stepContext.Context, OrderResponses.ResponseIds.OrderStatusCard, order);
             return await stepContext.EndDialogAsync();
         }

@@ -85,6 +85,10 @@ namespace Hackathon.SpotBot
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Greetings", null, cancellationToken);
             }
+            else if (topIntent == "Help")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Help", null, cancellationToken);
+            }
             else
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Confused", null, cancellationToken);
@@ -101,6 +105,7 @@ namespace Hackathon.SpotBot
             AddDialog(new CheckPaymentDialog($"{nameof(MainDialog)}.Payment", _botStateService, _services));
             AddDialog(new GreetingDialog($"{nameof(MainDialog)}.Greetings", _botStateService, _services));
             AddDialog(new ConfusedDialog($"{nameof(MainDialog)}.Confused", _botStateService, _services));
+            AddDialog(new HelpDialog($"{nameof(MainDialog)}.Help", _botStateService, _services));
             AddDialog(new CheckOrderPerformanceDialog($"{nameof(MainDialog)}.OrderPerformance", _botStateService, _services));
         }
     }
