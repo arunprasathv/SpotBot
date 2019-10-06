@@ -1,0 +1,8 @@
+Label	Weight	Text
+i_SpotBot	1	find order
+i_SpotBot	1	hello bot
+i_SpotBot	1	get order
+i_SpotBot	1	i'm stuck
+i_SpotBot	1	show me the order performance
+i_SpotBot	1	what can you do
+i_SpotBot	1	get me the order performance

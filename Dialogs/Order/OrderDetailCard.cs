@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SpotBot.Dialogs.Order.Resources;
 using Newtonsoft.Json;
 using System.IO;
+using System;
 
 namespace Hackathon.SpotBot
 {
@@ -42,44 +43,29 @@ namespace Hackathon.SpotBot
 
             InitialDialogId = $"{nameof(CheckOrderStatusDialog)}.mainFlow";
             AddDialog(new WaterfallDialog($"{nameof(CheckOrderStatusDialog)}.mainFlow", checkOrderStatus) );
-            AddDialog(new TextPrompt($"{nameof(CheckOrderStatusDialog)}.orderNumber"));
-            AddDialog(new TextPrompt($"{nameof(CheckOrderStatusDialog)}.ssid"));
+            AddDialog(new TextPrompt($"{nameof(CheckOrderStatusDialog)}.orderNumber", GuidValidatorAsync));
+            AddDialog(new TextPrompt($"{nameof(CheckOrderStatusDialog)}.ssid", GuidValidatorAsync));
         }
 
         private async Task<DialogTurnResult> PromptForSelfServiceId(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             var state = await _botStateService.OrderDataAccessor.GetAsync(stepContext.Context, () => new Order());
-
-           
-
-            //var orderNumber = (string)stepContext.Result;
-            //var order = _client.GetOrderByNumber(orderNumber);
             return await stepContext.PromptAsync($"{nameof(CheckOrderStatusDialog)}.ssid", new PromptOptions
             {
-                Prompt = MessageFactory.Text("I am happy to help. Could you please provide the Self Service Id?")
-                //RetryPrompt = MessageFactory.Text("The value entered must be between the hours of 9 am and 5 pm.")
+                Prompt = MessageFactory.Text("I am happy to help. Could you please provide the Self Service Id?"),
+                RetryPrompt = MessageFactory.Text("The value entered must be a valid GUID."),
             }, cancellationToken);
-            //return await stepContext.PromptAsync($"{nameof(CheckOrderStatusDialog)}.ssid", new PromptOptions
-            //{
-            //    Prompt = await _responder.RenderTemplate(stepContext.Context, stepContext.Context.Activity.Locale, OrderResponses.ResponseIds.PhoneNumberPrompt),
-            //    RetryPrompt = await _responder.RenderTemplate(stepContext.Context, stepContext.Context.Activity.Locale, OrderResponses.ResponseIds.PhoneNumberPrompt)
-            //}, cancellationToken);
+           
         }
         private async Task<DialogTurnResult> PromptForOrderNumber(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             stepContext.Values["ssId"] = (string)stepContext.Result;
-            
             return await stepContext.PromptAsync($"{nameof(CheckOrderStatusDialog)}.orderNumber", new PromptOptions
             {
                 Prompt = MessageFactory.Text("Could you please provide the Order Id?")
-                //RetryPrompt = MessageFactory.Text("The value entered must be between the hours of 9 am and 5 pm.")
             }, cancellationToken);
 
-            //return await stepContext.PromptAsync($"{nameof(CheckOrderStatusDialog)}.orderNumber", new PromptOptions
-            //{
-            //    Prompt = await _responder.RenderTemplate(stepContext.Context, stepContext.Context.Activity.Locale, OrderResponses.ResponseIds.OrderNumberPrompt),
-            //    RetryPrompt = await _responder.RenderTemplate(stepContext.Context, stepContext.Context.Activity.Locale, OrderResponses.ResponseIds.OrderNumberReprompt)
-            //}, cancellationToken);
+            
         }
         private async Task<DialogTurnResult> ShowOrderStatus(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
@@ -138,15 +124,8 @@ namespace Hackathon.SpotBot
                     adaptiveCardJson = adaptiveCardJson.Replace("{{marketName4}}", x.marketName ?? string.Empty);
                 }
                 i++;
-                //adaptiveCardJson = adaptiveCardJson.Replace("{{description2}}", x.description ?? string.Empty);
-                //adaptiveCardJson = adaptiveCardJson.Replace("{{marketName2}}", x.marketName ?? string.Empty);
-                //adaptiveCardJson = adaptiveCardJson.Replace("{{description3}}", x.description ?? string.Empty);
-                //adaptiveCardJson = adaptiveCardJson.Replace("{{marketName3}}", x.marketName ?? string.Empty);
-                //adaptiveCardJson = adaptiveCardJson.Replace("{{description4}}", x.description ?? string.Empty);
-                //adaptiveCardJson = adaptiveCardJson.Replace("{{marketName4}}", x.marketName ?? string.Empty);
-
             }
-                );
+);
            adaptiveCardJson = adaptiveCardJson.Replace("{{adVideoURL}}", "https://ssbdevassetlibrary.blob.core.windows.net/users/138477ff-1341-5ec6-d350-f1185db9b5f6/68F43936-E1E9-42BB-9089-A498AD8A2E32_UploadedCreative.mp4?sv=2018-03-28&sig=6Rs6Pg%2FDg65lCjOcq59pHGLQ1VGOomsLaE9WI%2FCQxzQ%3D&spr=https&se=2019-10-06T02%3A55%3A33Z&srt=co&ss=b&sp=rcwdl");
 
            var adaptiveCardAttachment = new Attachment()
@@ -158,7 +137,23 @@ namespace Hackathon.SpotBot
             
             return adaptiveCardAttachment;
         }
-        private class DialogIds
+
+        private Task<bool> GuidValidatorAsync(PromptValidatorContext<string> promptContext, CancellationToken cancellationToken)
+        {
+            var valid = true;
+            System.Guid yourGuid;
+            if (promptContext.Recognized.Succeeded)
+            {
+                if (!System.Guid.TryParse(promptContext.Recognized.Value, out yourGuid))
+                {
+                    valid = false;
+                }
+            }
+            return Task.FromResult(valid);
+        }
+      
+
+    private class DialogIds
         {
             public const string OrderNumberPrompt = "orderNumberPrompt";
             public const string PhoneNumberPrompt = "phoneNumberPrompt";

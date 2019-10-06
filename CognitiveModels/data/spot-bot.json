@@ -1,0 +1,58 @@
+{
+  "luis_schema_version": "3.2.0",
+  "versionId": "Dispatch",
+  "name": "spot-bot",
+  "desc": "Dispatch model for spot-bot",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "i_SpotBot"
+    }
+  ],
+  "entities": [
+    {
+      "name": "Advertiser_PatternAny",
+      "roles": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [
+    {
+      "name": "i_0",
+      "mode": true,
+      "words": "order details",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "patterns": [
+    {
+      "pattern": "show payment details for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    },
+    {
+      "pattern": "show order for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    },
+    {
+      "pattern": "get order details for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    },
+    {
+      "pattern": "show order performance for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    }
+  ],
+  "utterances": [],
+  "settings": [
+    {
+      "name": "NormalizeDiacritics",
+      "value": "true"
+    }
+  ]
+}

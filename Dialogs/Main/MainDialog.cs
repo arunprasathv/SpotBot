@@ -60,14 +60,15 @@ namespace Hackathon.SpotBot
 
             // Check dispatch result
             var dispatchResult = await _services.Dispatch.RecognizeAsync(stepContext.Context, CancellationToken.None);
-            // var topIntent = dispatchResult.GetTopScoringIntent();
-            var luisResult = dispatchResult.Properties["luisResult"] as LuisResult;
+            var getIntent = dispatchResult.GetTopScoringIntent();
+           var  topIntent = getIntent.intent;
+            // this is for multiple luis applications
+            //            var luisResult = dispatchResult.Properties["luisResult"] as LuisResult;
+            //          var result = luisResult.ConnectedServiceResult;
+            //        var topIntent = result.TopScoringIntent.Intent;
 
-            var result = luisResult.ConnectedServiceResult;
-            var topIntent = result.TopScoringIntent.Intent;
 
-
-            if (topIntent == "Order Details")
+            if (topIntent == "Order_Details" || topIntent == "GetOrder")
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Order", null, cancellationToken);
                 //routeResult = await dc.BeginDialogAsync(nameof(CheckOrderStatusDialog));
@@ -76,61 +77,30 @@ namespace Hackathon.SpotBot
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Payment", null, cancellationToken);
             }
-            else if (topIntent == "Order Performance")
+            else if (topIntent == "Order_Performance")
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.OrderPerformance", null, cancellationToken);
             }
+            else if (topIntent == "Greeting")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Greetings", null, cancellationToken);
+            }
             else
             {
-                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Order", null, cancellationToken);
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Confused", null, cancellationToken);
             }
         }
-
         private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             await _responder.ReplyWith(stepContext.Context, "What else can I help you with?");
             return await stepContext.EndDialogAsync(null, cancellationToken);
         }
-        //protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
-        //{
-        //    var routeResult = EndOfTurn;
-
-        //    // Check dispatch result
-        //    var dispatchResult = await _services.Dispatch.RecognizeAsync(dc.Context,  CancellationToken.None);
-        //    // var topIntent = dispatchResult.GetTopScoringIntent();
-        //   var luisResult= dispatchResult.Properties["luisResult"] as LuisResult;
-
-        //    var result = luisResult.ConnectedServiceResult;
-        //    var topIntent = result.TopScoringIntent.Intent;
-
-
-        //    if (topIntent=="Order Details")
-        //    {
-        //        // return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.greeting", null, cancellationToken);
-
-        //        routeResult=await dc.BeginDialogAsync(nameof(CheckOrderStatusDialog));
-        //    }
-        //    if (routeResult.Status == DialogTurnStatus.Complete)
-        //    {
-        //        await CompleteAsync(dc);
-        //    }
-        //}
-
-        //protected override async Task CompleteAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
-        //{
-        //    // The active dialog's stack ended with a complete status
-        //    await _responder.ReplyWith(innerDc.Context, "What else can I help you with?");
-        //}
-
         private void RegisterDialogs()
         {
-            //$"{nameof(MainDialog)}.greeting"
-            // Add Named Dialogs
-            //AddDialog(new GreetingDialog($"{nameof(MainDialog)}.greeting", _botStateService));
-            //AddDialog(new BugReportDialog($"{nameof(MainDialog)}.bugReport", _botStateService));
-
             AddDialog(new CheckOrderStatusDialog($"{nameof(MainDialog)}.Order", _botStateService, _services));
             AddDialog(new CheckPaymentDialog($"{nameof(MainDialog)}.Payment", _botStateService, _services));
+            AddDialog(new GreetingDialog($"{nameof(MainDialog)}.Greetings", _botStateService, _services));
+            AddDialog(new ConfusedDialog($"{nameof(MainDialog)}.Confused", _botStateService, _services));
             AddDialog(new CheckOrderPerformanceDialog($"{nameof(MainDialog)}.OrderPerformance", _botStateService, _services));
         }
     }

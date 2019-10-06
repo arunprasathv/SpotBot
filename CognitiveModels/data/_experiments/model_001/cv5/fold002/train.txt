@@ -1,0 +1,31 @@
+Label	Weight	Text
+i_SpotBot	1	find the order performance for the order
+i_SpotBot	1	i don't understand
+i_SpotBot	1	order performance
+i_SpotBot	1	how are you today
+i_SpotBot	1	help me
+i_SpotBot	1	hey
+i_SpotBot	1	can you get me the payment status
+i_SpotBot	1	help
+i_SpotBot	1	show oder details
+i_SpotBot	1	check the payment for the advertiser for the order
+i_SpotBot	1	what can i say
+i_SpotBot	1	is the order paid
+i_SpotBot	1	order performance for the advertiser
+i_SpotBot	1	hello
+i_SpotBot	1	find order
+i_SpotBot	1	hello bot
+i_SpotBot	1	get order
+i_SpotBot	1	i'm stuck
+i_SpotBot	1	show me the order performance
+i_SpotBot	1	what can you do
+i_SpotBot	1	get me the order performance
+i_SpotBot	1	find order for advertiser
+i_SpotBot	1	hi
+i_SpotBot	1	show order details for the recent order
+i_SpotBot	1	show me the recent order
+i_SpotBot	1	get order details
+i_SpotBot	1	what do i do now
+i_SpotBot	1	how are you
+i_SpotBot	1	why doesn't this work
+i_SpotBot	1	help please

@@ -14,15 +14,19 @@ namespace Hackathon.SpotBot
         // Constants
         public const string Help = "help";
         public const string Intro = "intro";
+        public const string Greeting = "greeting";
+        public const string Confused = "confused";
 
         private static LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
             ["default"] = new TemplateIdMap
             {
-               
+                { Greeting, (context, data) => "Hi there!" },
+                { Confused, (context, data) => "I'm sorry, I'm not able to help with that." },
                 { Help, (context, data) => SendHelpCard(context, data) },
                 { Intro, (context, data) => SendIntroCard(context, data) },
             },
+            
             ["en"] = new TemplateIdMap { },
             ["fr"] = new TemplateIdMap { },
         };

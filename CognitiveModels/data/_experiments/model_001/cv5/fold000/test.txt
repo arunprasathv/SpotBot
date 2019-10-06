@@ -1,0 +1,8 @@
+Label	Weight	Text
+i_SpotBot	1	find the order performance for the order
+i_SpotBot	1	i don't understand
+i_SpotBot	1	order performance
+i_SpotBot	1	how are you today
+i_SpotBot	1	help me
+i_SpotBot	1	hey
+i_SpotBot	1	can you get me the payment status

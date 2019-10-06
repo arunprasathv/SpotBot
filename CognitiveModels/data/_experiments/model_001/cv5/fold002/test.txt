@@ -1,0 +1,8 @@
+Label	Weight	Text
+i_SpotBot	1	does the order paid
+i_SpotBot	1	show payment details
+i_SpotBot	1	find order details
+i_SpotBot	1	good morning
+i_SpotBot	1	hiya
+i_SpotBot	1	show order
+i_SpotBot	1	can you help me

@@ -45,4 +45,8 @@
       <LastGenOutput>OrderStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CognitiveModels\" />
+  </ItemGroup>
 </Project>

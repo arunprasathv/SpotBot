@@ -1,0 +1,8 @@
+Label	Weight	Text
+i_SpotBot	1	help
+i_SpotBot	1	show oder details
+i_SpotBot	1	check the payment for the advertiser for the order
+i_SpotBot	1	what can i say
+i_SpotBot	1	is the order paid
+i_SpotBot	1	order performance for the advertiser
+i_SpotBot	1	hello
