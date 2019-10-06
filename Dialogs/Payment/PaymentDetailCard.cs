@@ -20,7 +20,7 @@ namespace Hackathon.SpotBot
         {
             _client = new ServiceClient();
             _services = services;
-            _botStateService = botStateService ?? throw new System.ArgumentNullException(nameof(botStateService));
+            _botStateService = botStateService ?? throw new ArgumentNullException(nameof(botStateService));
 
             var checkPayment = new WaterfallStep[]
             {

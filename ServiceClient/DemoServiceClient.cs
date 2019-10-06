@@ -47,7 +47,7 @@ namespace Hackathon.SpotBot
             throw new NotImplementedException();
         }
 
-        public OrderPerformance GetOrderPerformance(string orderId)
+        public OrderPerformance GetOrderPerformance(string orderId, string selfServiceId)
         {
             throw new NotImplementedException();
         }

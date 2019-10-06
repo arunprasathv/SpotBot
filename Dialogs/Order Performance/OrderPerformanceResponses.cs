@@ -62,6 +62,122 @@ namespace Hackathon.SpotBot
                 }
             });
 
+            card.Body.Add(new AdaptiveColumnSet()
+            {
+                Columns = new List<AdaptiveColumn>()
+                {
+                    new AdaptiveColumn()
+                    {
+                        Spacing = AdaptiveSpacing.Medium,
+                        Items = new List<AdaptiveElement>
+                        {
+                            new AdaptiveTextBlock()
+                            {
+                                Text = "Network Performance Information",
+                                Weight = AdaptiveTextWeight.Bolder,
+                                Wrap = true
+                            }
+                        },
+                        Width = AdaptiveColumnWidth.Stretch
+                    },
+
+                    new AdaptiveColumn()
+                    {
+                        Id = "chevronDown1",
+                        Spacing = AdaptiveSpacing.Small,
+                        VerticalContentAlignment = AdaptiveVerticalContentAlignment.Center,
+                        Items = new List<AdaptiveElement>
+                        {
+                            new AdaptiveImage()
+                            {
+                                Url = new Uri("https://adaptivecards.io/content/down.png"),
+                                PixelWidth = 20,
+                                AltText = "collapsed",
+                                SelectAction = new AdaptiveToggleVisibilityAction()
+                                {
+                                   Title = "Collapase",
+                                   TargetElements = new List<AdaptiveTargetElement>()
+                                   {
+                                       "cardContent1",
+                                       "chevronUp1",
+                                       "chevronDown1"
+                                   }
+                                }
+                            }
+                        },
+                        Width = AdaptiveColumnWidth.Auto
+                    },
+
+                    new AdaptiveColumn()
+                    {
+                        Id = "chevronUp1",
+                        IsVisible = false,
+                        Spacing = AdaptiveSpacing.Small,
+                        VerticalContentAlignment = AdaptiveVerticalContentAlignment.Center,
+                        Items = new List<AdaptiveElement>
+                        {
+                            new AdaptiveImage()
+                            {
+                                Url = new Uri("https://adaptivecards.io/content/up.png"),
+                                PixelWidth = 20,
+                                AltText = "expanded",
+                                SelectAction = new AdaptiveToggleVisibilityAction()
+                                {
+                                   Title = "expand",
+                                   TargetElements = new List<AdaptiveTargetElement>()
+                                   {
+                                       "cardContent1",
+                                       "chevronUp1",
+                                       "chevronDown1"
+                                   }
+                                }
+                            }
+                        },
+                        Width = AdaptiveColumnWidth.Auto
+                    }
+                }                                
+            });
+
+            card.Body.Add(new AdaptiveContainer()
+            {
+                Spacing = AdaptiveSpacing.Large,
+                Style = AdaptiveContainerStyle.Emphasis,
+                Items = new List<AdaptiveElement>()
+                {
+                   new AdaptiveColumnSet()
+                   {
+                       Columns = new List<AdaptiveColumn>()
+                       {
+                           new AdaptiveColumn()
+                           {
+                               Items = new List<AdaptiveElement>()
+                               {
+                                   new AdaptiveTextBlock()
+                                   {
+                                       Weight = AdaptiveTextWeight.Bolder,
+                                       Text = "Network Abbreviation"
+                                   }
+                               },
+                               Width = AdaptiveColumnWidth.Auto
+                           },
+
+                           new AdaptiveColumn()
+                           {
+                               Items = new List<AdaptiveElement>()
+                               {
+                                   new AdaptiveTextBlock()
+                                   {
+                                       Weight = AdaptiveTextWeight.Bolder,
+                                       Text = "Network Impression Percentage"
+                                   }
+                               },
+                               Width = AdaptiveColumnWidth.Auto
+                           }
+                       }
+                   }
+                }
+            });
+
             response.Attachments.Add(new Attachment()
             {
                 ContentType = "application/vnd.microsoft.card.adaptive",
