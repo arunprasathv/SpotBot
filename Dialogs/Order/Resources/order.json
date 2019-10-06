@@ -25,8 +25,8 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "altText": "In Fulfillment",
-                  "text": "In Fullfilment",
+                  "altText": "{{orderStatus}}",
+                  "text": "{{orderStatus}}",
                   "spacing": "Medium",
                   "color": "Good",
                   "size": "Medium",
@@ -55,7 +55,7 @@
                 {
                   "type": "TextBlock",
                   "size": "ExtraLarge",
-                  "text": "Jennifer Smith",
+                  "text": "{{firstName}}  {{lastName}}",
                   "wrap": true
                 },
                 {
@@ -64,7 +64,7 @@
                   "size": "Small",
                   "weight": "Bolder",
                   "color": "Accent",
-                  "text": "Order# - 41629"
+                  "text": "{{orderNumber}}"
                 }
               ],
               "width": "stretch"
@@ -93,19 +93,119 @@
           "facts": [
             {
               "title": "Submitted By",
-              "value": "**Jeff** crostonj@gmail.com"
+              "value": "**{{firstName}}** {{emailAddress}}"
             },
             {
               "title": "Duration",
-              "value": "2019/9/19 - 2019/09/25"
+              "value": "{{startDate}} - {{endDate}}"
             },
             {
               "title": "Submitted On",
-              "value": "2019/09/14"
+              "value": "{{creationDateTime}}"
             },
             {
               "title": "Amount",
-              "value": "$ 404.30"
+              "value": "$ {{amount}}"
+            },
+            {
+              "title": "Demographics",
+              "value": "$ {{Demographics}}"
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "color": "Bad",
+                  "text": "**Zone**",
+                  "wrap": true
+                }
+              ],
+              "width": "auto"
+            },
+            {
+              "type": "Column",
+              "id": "chevronDown1",
+              "spacing": "Small",
+              "verticalContentAlignment": "Center",
+              "items": [
+                {
+                  "type": "Image",
+                  "selectAction": {
+                    "type": "Action.ToggleVisibility",
+                    "title": "collapse",
+                    "targetElements": [
+                      "cardContent1",
+                      "chevronUp1",
+                      "chevronDown1"
+                    ]
+                  },
+                  "url": "https://adaptivecards.io/content/down.png",
+                  "width": "20px",
+                  "altText": "collapsed"
+                }
+              ],
+              "width": "auto"
+            },
+            {
+              "type": "Column",
+              "id": "chevronUp1",
+              "isVisible": false,
+              "spacing": "Small",
+              "verticalContentAlignment": "Center",
+              "items": [
+                {
+                  "type": "Image",
+                  "selectAction": {
+                    "type": "Action.ToggleVisibility",
+                    "title": "expand",
+                    "targetElements": [
+                      "cardContent1",
+                      "chevronUp1",
+                      "chevronDown1"
+                    ]
+                  },
+                  "url": "https://adaptivecards.io/content/up.png",
+                  "width": "20px",
+                  "altText": "expanded"
+                }
+              ],
+              "width": "auto"
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "id": "cardContent1",
+          "isVisible": false,
+          "items": [
+            {
+              "type": "Container",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{description1}}  {{marketName1}}",
+                  "isSubtle": true,
+                  "wrap": true
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "{{description2}} {{marketName2}}",
+                  "isSubtle": true,
+                  "wrap": true
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "{{description3}} {{marketName3}}",
+                  "isSubtle": true,
+                  "wrap": true
+                }
+              ]
             }
           ]
         },
@@ -116,13 +216,16 @@
           "sources": [
             {
               "mimeType": "video/mp4",
-              "url": "https://ssbdevassetlibrary.blob.core.windows.net/users/138477ff-1341-5ec6-d350-f1185db9b5f6/68F43936-E1E9-42BB-9089-A498AD8A2E32_UploadedCreative.mp4?sv=2018-03-28&sig=OTcFaYewdnNZTKfOqh80C38ZplJ0Wwz6mY2VtvaOiR4%3D&spr=https&se=2019-09-27T19%3A50%3A45Z&srt=co&ss=b&sp=rcwdl"
+              "url": "{{adVideoURL}}"
             }
           ]
         }
       ]
     }
-  ],
+
+      ],
+    
+ 
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.0"
 }

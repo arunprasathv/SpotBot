@@ -66,30 +66,7 @@ namespace Hackathon.SpotBot
    
 
  
-        public class Order
-        {
-            public string Id { get; set; }
-
-            public DateTime DatePlaced { get; set; }
-
-            public string Phone { get; set; }
-
-            public List<Product> Items { get; set; }
-
-            public double Subtotal { get; set; }
-
-            public double Tax { get; set; }
-
-            public double Total { get; set; }
-
-            public OrderStatus Status { get; set; }
-
-            public string ShippingProvider { get; set; }
-
-            public object TrackingNumber { get; set; }
-
-            public object TrackingLink { get; set; }
-        }
+       
     public class Product
     {
         public string Id { get; set; }
@@ -109,21 +86,21 @@ namespace Hackathon.SpotBot
         Shipped,
         Delivered
     }
-    //public class Order
-    //{
-    //    public string proposalId { get; set; }
-    //    public Advertiser advertiser { get; set; }
-    //    public Demo demo { get; set; }
-    //    public Segment segment { get; set; }
-    //    public List<Zone> zones { get; set; }
-    //    public double amount { get; set; }
-    //    public DateTime startDate { get; set; }
-    //    public DateTime endDate { get; set; }
-    //    public Creative creative { get; set; }
-    //    public string orderStatus { get; set; }
-    //    public string geoTargetDescription { get; set; }
-    //    public DateTime creationDateTime { get; set; }
-    //    public string orderId { get; set; }
-    //    public int orderNumber { get; set; }
-    //}
-}
+    public class Order
+    {
+        public string proposalId { get; set; }
+        public Advertiser advertiser { get; set; }
+        public Demo demo { get; set; }
+        public Segment segment { get; set; }
+        public List<Zone> zones { get; set; }
+        public double amount { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+        public Creative creative { get; set; }
+        public string orderStatus { get; set; }
+        public string geoTargetDescription { get; set; }
+        public DateTime creationDateTime { get; set; }
+        public string orderId { get; set; }
+        public int orderNumber { get; set; }
+        }
+    }

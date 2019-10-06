@@ -31,18 +31,19 @@ namespace Hackathon.SpotBot
 
             var card = new AdaptiveCard
             {
+                
                 Body = new List<AdaptiveElement>()
             };
 
-
             card.Body.Add(new AdaptiveContainer()
             {
+                
                 Items = new List<AdaptiveElement>()
                 {
                     new AdaptiveTextBlock() { Text = "Payment Details", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
                 },
             });
-
+             
             card.Body.Add(new AdaptiveFactSet()
             {
                 Facts = new List<AdaptiveFact>()
