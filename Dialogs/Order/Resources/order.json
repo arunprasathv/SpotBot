@@ -109,7 +109,7 @@
             },
             {
               "title": "Demographics",
-              "value": "$ {{Demographics}}"
+              "value": "{{Demographics}}"
             }
           ]
         },
