@@ -54,5 +54,10 @@ namespace Hackathon.SpotBot
 
             return response.Data;
         }
+
+        public List<Spot> GetSpotData(string oneTimOrderId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
