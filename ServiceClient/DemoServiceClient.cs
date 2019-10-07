@@ -198,5 +198,10 @@ namespace Hackathon.SpotBot
         {
             throw new NotImplementedException();
         }
+        public CAMAdvertiser GetAdvertiserDetails()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

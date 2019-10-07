@@ -13,6 +13,7 @@ namespace Hackathon.SpotBot
         OrderPerformance GetOrderPerformance(string orderId, string selfServiceId);
         List<Spot> GetSpotData(string oneTimOrderId);
         Commission GetCommissionDetails();
+        CAMAdvertiser GetAdvertiserDetails();
         List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth);
     }
 }

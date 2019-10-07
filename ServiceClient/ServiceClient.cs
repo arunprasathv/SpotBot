@@ -89,6 +89,26 @@ namespace Hackathon.SpotBot
             throw new NotImplementedException();
         }
 
+        public CAMAdvertiser GetAdvertiserDetails()
+        {
+            List<CAMAdvertiser> advertiser = new List<CAMAdvertiser>();
+
+            CAMAdvertiser response = new CAMAdvertiser()
+            {
+               AccountID = 52678,
+               AccountName = "LKQ SELF SERVICE AUTO PARTS",
+               AccountStatus = "Approved",
+               Division = "Central",
+               BillingSchedule = "Broadcast",
+               ContactName = "TODD CHESEBRO",
+               Phone = "574-233-7440",
+               Email = "todd@cworldmedia.com",
+               Address = "1602 S LAFAYETTE BLVD, SOUTH BEND, IN 46613"
+            };
+
+            return response;
+        }
+
         public List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth)
         {
             var result = new List<InvoiceSummary>();

@@ -7,6 +7,13 @@
 
   <ItemGroup>
     <None Remove="Dialogs\Main\Resources\comcast-logo.png" />
+    <None Remove="Images\commission.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\commission.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
