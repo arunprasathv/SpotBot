@@ -43,7 +43,7 @@ namespace Hackathon.SpotBot
             {
                 Items = new List<AdaptiveElement>()
                 {
-                    new AdaptiveTextBlock() { Text = "Order Performance", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
+                    new AdaptiveTextBlock() { Text = "Order Performance", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Color = AdaptiveTextColor.Accent },
                 },
             });
 
@@ -54,10 +54,10 @@ namespace Hackathon.SpotBot
                     new AdaptiveFact("Order #:", orderPerformance.OrderId.ToString()),
                     new AdaptiveFact("Reach:", orderPerformance.Reach.ToString()),
                     new AdaptiveFact("Frequency:", orderPerformance.Frequency.ToString()),
-                    new AdaptiveFact("AverageAdCompletionRate", orderPerformance.AverageAdCompletionRate.ToString()),
-                    new AdaptiveFact("CumulativeImpressionCount", orderPerformance.CumulativeImpressionCount.ToString()),
-                    new AdaptiveFact("SpotCount",orderPerformance.SpotCount.ToString()),
-                    new AdaptiveFact("SpotCountAired",orderPerformance.SpotCountAired.ToString())                    
+                    new AdaptiveFact("Average Ad Completion Rate", orderPerformance.AverageAdCompletionRate.ToString()),
+                    new AdaptiveFact("Cumulative Impression Count", orderPerformance.CumulativeImpressionCount.ToString()),
+                    new AdaptiveFact("Spot Count",orderPerformance.SpotCount.ToString()),
+                    new AdaptiveFact("Spot Count Aired",orderPerformance.SpotCountAired.ToString())                    
                 }
             });
 
@@ -162,7 +162,9 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Network Abbreviation"
+                                       Text = "Network Abbreviation",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
                                    }
                                },
                                Width = AdaptiveColumnWidth.Auto
@@ -175,7 +177,9 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Network Impression Percentage"
+                                       Text = "Network Impression Percentage",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
                                    }
                                },
                                Width = AdaptiveColumnWidth.Auto
@@ -329,7 +333,9 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Air Date"
+                                       Text = "Air Date",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
                                    }
                                },
                                Width = AdaptiveColumnWidth.Auto
@@ -342,7 +348,9 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Daily Impression Count"
+                                       Text = "Daily Impression Count",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
                                    }
                                },
                                Width = AdaptiveColumnWidth.Auto
@@ -355,7 +363,9 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Cumulative Impression Count"
+                                       Text = "Cumulative Impression Count",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
                                    }
                                },
                                Width = AdaptiveColumnWidth.Auto
