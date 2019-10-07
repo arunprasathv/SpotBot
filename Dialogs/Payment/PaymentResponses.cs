@@ -60,10 +60,10 @@ namespace Hackathon.SpotBot
                 {
                                     new AdaptiveColumn()
                        {
-                           Width = "5",
+                           Width = "10",
                            Items = new List<AdaptiveElement>()
                 {
-                    new AdaptiveTextBlock() { Text = "Payment Details", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
+                    new AdaptiveTextBlock() { Text = "Payment Details", Color= AdaptiveTextColor.Accent , Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
                 },
                    },
                    new AdaptiveColumn()

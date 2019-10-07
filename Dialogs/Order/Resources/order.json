@@ -15,6 +15,7 @@
                   "type": "TextBlock",
                   "size": "Large",
                   "weight": "Bolder",
+                  "color" : "accent",
                   "text": "**Order Details**"
                 }
               ],
@@ -109,6 +110,7 @@
             },
             {
               "title": "Demographics",
+              "color": "attention",
               "value": "{{Demographics}}"
             }
           ]
@@ -121,7 +123,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "color": "Bad",
+                  "color": "accent",
                   "text": "**Zone**",
                   "wrap": true
                 }

@@ -12,7 +12,7 @@ namespace Hackathon.SpotBot
     public class MainResponses : TemplateManager
     {
         // Constants
-         public const string Intro = "intro";
+        public const string Intro = "intro";
         public const string Greeting = "greeting";
         public const string Confused = "confused";
 
@@ -20,7 +20,7 @@ namespace Hackathon.SpotBot
         {
             ["default"] = new TemplateIdMap
             {
-                { Greeting, (context, data) => "Hi there!" },
+                { Greeting, (context, data) => "Welcome Arun!" },
                 { Confused, (context, data) => "I'm sorry, I'm not able to help with that." },
                 { Intro, (context, data) => SendIntroCard(context, data) },
             },
