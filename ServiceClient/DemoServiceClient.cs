@@ -58,6 +58,137 @@ namespace Hackathon.SpotBot
             throw new NotImplementedException();
         }
 
+        public List<Spot> GetSpotData(string oneTimOrderId)
+        {
+            List<Spot> listSpots = new List<Spot>();
+            Spot spot1 = new Spot()
+            {
+                SpotID = "ET10561715",
+                Description = "indianapolis 2nd round",
+                OneTimOrderId = 2805639,
+                Advertiser = "Bill Huge for Indianapolis Mayor",
+                SpotDetails = new List<SpotLog>()
+                {
+                    new SpotLog()
+                    {
+                        Zone = "NBL",
+                        Network = "FXNC",
+                        OrderedDate = new DateTime(2019, 09, 12),
+                        ScheduledAt = new DateTime(2019, 09, 12, 8, 20, 30),
+                        AiredAt = new DateTime(2019, 09, 12, 8, 23, 58),
+                        AiredSuccessful = true,
+                        ErrorStatus = "Aired Successfully"
+                    },
+                    new SpotLog()
+                    {
+                        Zone = "ANDE",
+                        Network = "FXNC",
+                        OrderedDate = new DateTime(2019, 09, 12),
+                        ScheduledAt = new DateTime(2019, 09, 12, 23, 48, 30),
+                        AiredAt = new DateTime(2019, 09, 12, 23, 51, 08),
+                        AiredSuccessful = true,
+                        ErrorStatus = "Aired Successfully"
+                    },
+                    //new SpotLog()
+                    //{
+                    //    Zone = "NEA",
+                    //    Network = "FXNC",
+                    //    OrderedDate = new DateTime(2019, 09, 13),
+                    //    ScheduledAt = new DateTime(2019, 09, 13, 09, 20, 30),
+                    //    AiredAt = new DateTime(2019, 09, 13, 09, 22, 16),
+                    //    AiredSuccessful = true,
+                    //    ErrorStatus = "Aired Successfully"
+                    //},
+                    new SpotLog()
+                    {
+                        Zone = "NWT",
+                        Network = "FXNC",
+                        OrderedDate = new DateTime(2019, 09, 13),
+                        ScheduledAt = new DateTime(2019, 09, 13, 5, 48, 30),
+                        AiredAt = new DateTime(2019, 09, 13, 5, 47, 37),
+                        AiredSuccessful = false,
+                        ErrorStatus = "Failed, No Cue in Window"
+                    },
+                    new SpotLog()
+                    {
+                        Zone = "SLB" ,
+                        Network = "APL",
+                        OrderedDate = new DateTime(2019, 09, 13),
+                        ScheduledAt = new DateTime(2019, 09, 13, 13, 20, 30),
+                        AiredAt = new DateTime(2019, 09, 13, 13, 15, 00),
+                        AiredSuccessful = false,
+                        ErrorStatus = "Failed, Cued Late"
+                    }
+                }
+            };
+
+            Spot spot2 = new Spot()
+            {
+                SpotID = "ET10561687",
+                Description = "Designing Dreams",
+                OneTimOrderId = 2805150,
+                Advertiser = "Mark Macco Architects",
+                SpotDetails = new List<SpotLog>()
+            {
+                new SpotLog()
+                {
+                    Zone = "NBL",
+                    Network = "FXNC",
+                    OrderedDate = new DateTime(2019, 09, 12),
+                    ScheduledAt = new DateTime(2019, 09, 12, 8, 20, 30),
+                    AiredAt = new DateTime(2019, 09, 12, 8, 23, 58),
+                    AiredSuccessful = true,
+                    ErrorStatus = "Aired Successfully"
+                },
+                new SpotLog()
+                {
+                    Zone = "ANDE",
+                    Network = "FXNC",
+                    OrderedDate = new DateTime(2019, 09, 12),
+                    ScheduledAt = new DateTime(2019, 09, 12, 23, 48, 30),
+                    AiredAt = new DateTime(2019, 09, 12, 23, 51, 08),
+                    AiredSuccessful = true,
+                    ErrorStatus = "Aired Successfully"
+                },
+                new SpotLog()
+                {
+                    Zone = "NEA",
+                    Network = "FXNC",
+                    OrderedDate = new DateTime(2019, 09, 13),
+                    ScheduledAt = new DateTime(2019, 09, 13, 09, 20, 30),
+                    AiredAt = new DateTime(2019, 09, 13, 09, 22, 16),
+                    AiredSuccessful = true,
+                    ErrorStatus = "Aired Successfully"
+                },
+                new SpotLog()
+                {
+                    Zone = "NWT",
+                    Network = "FXNC",
+                    OrderedDate = new DateTime(2019, 09, 13),
+                    ScheduledAt = new DateTime(2019, 09, 13, 5, 48, 30),
+                    AiredAt = new DateTime(2019, 09, 13, 5, 47, 37),
+                    AiredSuccessful = false,
+                    ErrorStatus = "Failed, Channel Collision"
+                },
+                //new SpotLog()
+                //{
+                //    Zone = "SLB" ,
+                //    Network = "APL",
+                //    OrderedDate = new DateTime(2019, 09, 13),
+                //    ScheduledAt = new DateTime(2019, 09, 13, 13, 20, 30),
+                //    AiredAt = new DateTime(2019, 09, 13, 13, 15, 00),
+                //    AiredSuccessful = false,
+                //    ErrorStatus = "Failed, Cued Late"
+                //}
+            }
+            };
+
+            listSpots.Add(spot1);
+            listSpots.Add(spot2);
+
+            return listSpots;
+        }
+
         public Commission GetCommissionDetails()
         {
             throw new NotImplementedException();

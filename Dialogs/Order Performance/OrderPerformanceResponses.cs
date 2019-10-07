@@ -31,20 +31,19 @@ namespace Hackathon.SpotBot
         }
 
         private static IMessageActivity CreateOrderPerformanceCard(ITurnContext context, OrderPerformance orderPerformance)
-        {
+        {   
             var response = context.Activity.CreateReply();
 
             var card = new AdaptiveCard
             {
                 Body = new List<AdaptiveElement>()
             };
-
-
+            
             card.Body.Add(new AdaptiveContainer()
             {
                 Items = new List<AdaptiveElement>()
                 {
-                    new AdaptiveTextBlock() { Text = "Order Performance", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
+                    new AdaptiveTextBlock() { Text = "Order Performance", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Color = AdaptiveTextColor.Accent },
                 },
             });
 
@@ -55,13 +54,14 @@ namespace Hackathon.SpotBot
                     new AdaptiveFact("Order #:", orderPerformance.OrderId.ToString()),
                     new AdaptiveFact("Reach:", orderPerformance.Reach.ToString()),
                     new AdaptiveFact("Frequency:", orderPerformance.Frequency.ToString()),
-                    new AdaptiveFact("AverageAdCompletionRate", orderPerformance.AverageAdCompletionRate.ToString()),
-                    new AdaptiveFact("CumulativeImpressionCount", orderPerformance.CumulativeImpressionCount.ToString()),
-                    new AdaptiveFact("SpotCount",orderPerformance.SpotCount.ToString()),
-                    new AdaptiveFact("SpotCountAired",orderPerformance.SpotCountAired.ToString())                    
+                    new AdaptiveFact("Average Ad Completion Rate", orderPerformance.AverageAdCompletionRate.ToString()),
+                    new AdaptiveFact("Cumulative Impression Count", orderPerformance.CumulativeImpressionCount.ToString()),
+                    new AdaptiveFact("Spot Count",orderPerformance.SpotCount.ToString()),
+                    new AdaptiveFact("Spot Count Aired",orderPerformance.SpotCountAired.ToString())                    
                 }
             });
 
+            //Network Performance Information
             card.Body.Add(new AdaptiveColumnSet()
             {
                 Columns = new List<AdaptiveColumn>()
@@ -97,8 +97,11 @@ namespace Hackathon.SpotBot
                                 {
                                    Title = "Collapase",
                                    TargetElements = new List<AdaptiveTargetElement>()
-                                   {
-                                       "cardContent1",
+                                   {                                       
+                                       "npContent1",
+                                       "npContent2",
+                                       "npContent3",
+                                       "npContent4",
                                        "chevronUp1",
                                        "chevronDown1"
                                    }
@@ -126,7 +129,10 @@ namespace Hackathon.SpotBot
                                    Title = "expand",
                                    TargetElements = new List<AdaptiveTargetElement>()
                                    {
-                                       "cardContent1",
+                                       "npContent1",
+                                       "npContent2",
+                                       "npContent3",
+                                       "npContent4",
                                        "chevronUp1",
                                        "chevronDown1"
                                    }
@@ -140,7 +146,8 @@ namespace Hackathon.SpotBot
 
             card.Body.Add(new AdaptiveContainer()
             {
-                Spacing = AdaptiveSpacing.Large,
+                Id = "npContent1",
+                IsVisible = false,                
                 Style = AdaptiveContainerStyle.Emphasis,
                 Items = new List<AdaptiveElement>()
                 {
@@ -155,7 +162,9 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Network Abbreviation"
+                                       Text = "Network Abbreviation",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
                                    }
                                },
                                Width = AdaptiveColumnWidth.Auto
@@ -168,7 +177,9 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Network Impression Percentage"
+                                       Text = "Network Impression Percentage",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
                                    }
                                },
                                Width = AdaptiveColumnWidth.Auto
@@ -177,6 +188,249 @@ namespace Hackathon.SpotBot
                    }
                 }
             });
+
+            int i = 2;
+            foreach (var item in orderPerformance.NetworkPerformance)
+            {
+                card.Body.Add(new AdaptiveContainer()
+                {
+                    Id = $"npContent{i++}",                              
+                    IsVisible = false,
+                    Style = AdaptiveContainerStyle.Emphasis,
+                    Items = new List<AdaptiveElement>()
+                    {
+                        new AdaptiveColumnSet()
+                        {
+                            Columns = new List<AdaptiveColumn>()
+                            {
+                                new AdaptiveColumn()
+                                {
+                                    Items = new List<AdaptiveElement>
+                                    {
+                                        new AdaptiveTextBlock()
+                                        {
+                                            Text = item.NetworkAbbreviation
+                                        }
+                                    },
+                                    Width = "50"
+                                },
+
+                                new AdaptiveColumn()
+                                {
+                                    Items = new List<AdaptiveElement>
+                                    {
+                                        new AdaptiveTextBlock()
+                                        {
+                                            Text = item.NetworkImpressionPercentage.ToString()
+                                        }
+                                    },
+                                    Width = "50"
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            //Impressions Delivered Information
+            card.Body.Add(new AdaptiveColumnSet()
+            {
+                Columns = new List<AdaptiveColumn>()
+                {
+                    new AdaptiveColumn()
+                    {
+                        Spacing = AdaptiveSpacing.Medium,
+                        Items = new List<AdaptiveElement>
+                        {
+                            new AdaptiveTextBlock()
+                            {
+                                Text = "Impressions Delivered Information",
+                                Weight = AdaptiveTextWeight.Bolder,
+                                Wrap = true
+                            }
+                        },
+                        Width = AdaptiveColumnWidth.Stretch
+                    },
+
+                    new AdaptiveColumn()
+                    {
+                        Id = "idDown1",
+                        Spacing = AdaptiveSpacing.Small,
+                        VerticalContentAlignment = AdaptiveVerticalContentAlignment.Center,
+                        Items = new List<AdaptiveElement>
+                        {
+                            new AdaptiveImage()
+                            {
+                                Url = new Uri("https://adaptivecards.io/content/down.png"),
+                                PixelWidth = 20,
+                                AltText = "collapsed",
+                                SelectAction = new AdaptiveToggleVisibilityAction()
+                                {
+                                   Title = "Collapase",
+                                   TargetElements = new List<AdaptiveTargetElement>()
+                                   {
+                                       "idContent1",
+                                       "idContent2",
+                                       "idContent3",
+                                       "idContent4",
+                                       "idUp1",
+                                       "idDown1"
+                                   }
+                                }
+                            }
+                        },
+                        Width = AdaptiveColumnWidth.Auto
+                    },
+
+                    new AdaptiveColumn()
+                    {
+                        Id = "idUp1",
+                        IsVisible = false,
+                        Spacing = AdaptiveSpacing.Small,
+                        VerticalContentAlignment = AdaptiveVerticalContentAlignment.Center,
+                        Items = new List<AdaptiveElement>
+                        {
+                            new AdaptiveImage()
+                            {
+                                Url = new Uri("https://adaptivecards.io/content/up.png"),
+                                PixelWidth = 20,
+                                AltText = "expanded",
+                                SelectAction = new AdaptiveToggleVisibilityAction()
+                                {
+                                   Title = "expand",
+                                   TargetElements = new List<AdaptiveTargetElement>()
+                                   {
+                                       "idContent1",
+                                       "idContent2",
+                                       "idContent3",
+                                       "idContent4",
+                                       "idUp1",
+                                       "idDown1"
+                                   }
+                                }
+                            }
+                        },
+                        Width = AdaptiveColumnWidth.Auto
+                    }
+                }
+            });
+
+            card.Body.Add(new AdaptiveContainer()
+            {
+                Id = "idContent1",
+                IsVisible = false,
+                Style = AdaptiveContainerStyle.Emphasis,
+                Items = new List<AdaptiveElement>()
+                {
+                   new AdaptiveColumnSet()
+                   {
+                       Columns = new List<AdaptiveColumn>()
+                       {
+                           new AdaptiveColumn()
+                           {
+                               Items = new List<AdaptiveElement>()
+                               {
+                                   new AdaptiveTextBlock()
+                                   {
+                                       Weight = AdaptiveTextWeight.Bolder,
+                                       Text = "Air Date",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
+                                   }
+                               },
+                               Width = AdaptiveColumnWidth.Auto
+                           },
+
+                           new AdaptiveColumn()
+                           {
+                               Items = new List<AdaptiveElement>()
+                               {
+                                   new AdaptiveTextBlock()
+                                   {
+                                       Weight = AdaptiveTextWeight.Bolder,
+                                       Text = "Daily Impression Count",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
+                                   }
+                               },
+                               Width = AdaptiveColumnWidth.Auto
+                           },
+
+                           new AdaptiveColumn()
+                           {
+                               Items = new List<AdaptiveElement>()
+                               {
+                                   new AdaptiveTextBlock()
+                                   {
+                                       Weight = AdaptiveTextWeight.Bolder,
+                                       Text = "Cumulative Impression Count",
+                                       Color = AdaptiveTextColor.Accent,
+                                       Wrap = true
+                                   }
+                               },
+                               Width = AdaptiveColumnWidth.Auto
+                           }
+
+                       }
+                   }
+                }
+            });
+
+            int j = 2;
+            foreach (var item in orderPerformance.ImpressionsDelivered)
+            {
+                card.Body.Add(new AdaptiveContainer()
+                {
+                    Id = $"idContent{j++}",
+                    IsVisible = false,
+                    Style = AdaptiveContainerStyle.Emphasis,
+                    Items = new List<AdaptiveElement>()
+                    {
+                        new AdaptiveColumnSet()
+                        {
+                            Columns = new List<AdaptiveColumn>()
+                            {
+                                new AdaptiveColumn()
+                                {
+                                    Items = new List<AdaptiveElement>
+                                    {
+                                        new AdaptiveTextBlock()
+                                        {
+                                            Text = item.AirDate.ToShortDateString()
+                                        }
+                                    },
+                                    Width = "50"
+                                },
+
+                                new AdaptiveColumn()
+                                {
+                                    Items = new List<AdaptiveElement>
+                                    {
+                                        new AdaptiveTextBlock()
+                                        {
+                                            Text = item.DailyImpressionCount.ToString()
+                                        }
+                                    },
+                                    Width = "50"
+                                },
+
+                                new AdaptiveColumn()
+                                {
+                                    Items = new List<AdaptiveElement>
+                                    {
+                                        new AdaptiveTextBlock()
+                                        {
+                                            Text = item.CumulativeImpressionCount.ToString()
+                                        }
+                                    },
+                                    Width = "50"
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
 
             response.Attachments.Add(new Attachment()
             {

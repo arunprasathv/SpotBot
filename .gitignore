@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Dialogs/Spot/spot - Copy.json
+/Dialogs/Spot/spot1.json
