@@ -1,6 +1,4 @@
-﻿ 
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,7 +6,6 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Schema;
-
 using System.Collections.Generic;
 
 namespace Hackathon.SpotBot

@@ -29,12 +29,11 @@ namespace Hackathon.SpotBot
         private static IMessageActivity CreateCommissionCard(ITurnContext context, Commission commissionDetails)
         {
             var response = context.Activity.CreateReply();
-            var imageUrl = "C:\\SpotBot\\Images\\commission.jpg";
+            var imageUrl = "C:\\SpotBot\\Images\\commissions.jpg";
 
             var card = new AdaptiveCard
             {
-                
-                Body = new List<AdaptiveElement>()
+                 Body = new List<AdaptiveElement>()
             };
 
 
@@ -44,12 +43,18 @@ namespace Hackathon.SpotBot
                 {
                                     new AdaptiveColumn()
                        {
-                           Width = "15",
+                           Spacing=AdaptiveSpacing.Padding,
+                           Width = "25",
                            Items = new List<AdaptiveElement>()
                 {
-                    new AdaptiveTextBlock() { Text = "Commission Summary", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
-                },
-                   },
+                    new AdaptiveTextBlock() { Text = "Commission Summary",Spacing=AdaptiveSpacing.Padding,  Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
+                    new AdaptiveTextBlock() { Text = "-------------------", Spacing=AdaptiveSpacing.None, Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
+                    new AdaptiveTextBlock() { Text = "Monthly Payment     :  "  + commissionDetails.TotalMonthlyPayout.ToString("C"), Spacing=AdaptiveSpacing.None, Size = AdaptiveTextSize.Medium, Weight=AdaptiveTextWeight.Lighter },
+                    new AdaptiveTextBlock() { Text = "YTD Commission Paid :  " +  commissionDetails.YTDCommissionsPaid.ToString("C"), Spacing=AdaptiveSpacing.None, Size = AdaptiveTextSize.Medium, Weight=AdaptiveTextWeight.Lighter },
+                    new AdaptiveTextBlock() { Text = "Revenue Adjustments :  " + commissionDetails.RevenueAdjustments.ToString("C"), Spacing=AdaptiveSpacing.None, Size = AdaptiveTextSize.Medium, Weight=AdaptiveTextWeight.Lighter },
+                    new AdaptiveTextBlock() { Text = "Charge Backs        :  " +  commissionDetails.ChargeBacks.ToString("C"), Spacing=AdaptiveSpacing.None, Size = AdaptiveTextSize.Medium, Weight=AdaptiveTextWeight.Lighter },
+                 },
+                 },
                    new AdaptiveColumn()
                        {
                            Width = "15",
@@ -59,23 +64,23 @@ namespace Hackathon.SpotBot
                                {
 
                                    Url = new Uri(imageUrl),
-                                  Size = AdaptiveImageSize.Small
+                                  Size = AdaptiveImageSize.Auto
                                }
                            }
                    }
                 }
             });
             
-            card.Body.Add(new AdaptiveFactSet()
-            {
-                Facts = new List<AdaptiveFact>()
-                {
-                    new AdaptiveFact("Total Monthly Payment:", commissionDetails.TotalMonthlyPayout.ToString("C")),
-                    new AdaptiveFact("YTD Commission Paid:", commissionDetails.YTDCommissionsPaid.ToString("C")),
-                    new AdaptiveFact("Revenue Adjustments:", commissionDetails.RevenueAdjustments.ToString("C")),
-                    new AdaptiveFact("Charge Backs:",commissionDetails.ChargeBacks.ToString("C"))
-                }
-            });
+            //card.Body.Add(new AdaptiveFactSet()
+            //{
+            //    Facts = new List<AdaptiveFact>()
+            //    {
+            //        new AdaptiveFact("Monthly Payment:", commissionDetails.TotalMonthlyPayout.ToString("C")),
+            //        new AdaptiveFact("YTD Commission Paid:", commissionDetails.YTDCommissionsPaid.ToString("C")),
+            //        new AdaptiveFact("Revenue Adjustments:", commissionDetails.RevenueAdjustments.ToString("C")),
+            //        new AdaptiveFact("Charge Backs:",commissionDetails.ChargeBacks.ToString("C"))
+            //    }
+            //});
 
             response.Attachments.Add(new Attachment()
             {
