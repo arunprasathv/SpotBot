@@ -9,7 +9,7 @@
                     "items": [
                       {
                         "type": "Image",
-                        "url": ".\\comcast-logo.png",
+                        "url": "C:\\SpotBot\\Dialogs\\Main\\Resources\\comcast-logo.png",
                         "size": "Stretch",
                         "width": "100px"
                       }

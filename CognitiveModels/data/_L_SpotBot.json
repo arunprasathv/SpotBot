@@ -1,0 +1,258 @@
+{
+  "luis_schema_version": "4.1.0",
+  "versionId": "0.1",
+  "name": "SpotBot",
+  "desc": "",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "GetOrder"
+    },
+    {
+      "name": "Greeting"
+    },
+    {
+      "name": "Help"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Order Details"
+    },
+    {
+      "name": "Order Performance"
+    },
+    {
+      "name": "Payment"
+    }
+  ],
+  "entities": [
+    {
+      "name": "Advertiser_PatternAny",
+      "roles": [],
+      "hierarchyChildren": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [
+    {
+      "name": "Get Order for advertiser",
+      "mode": true,
+      "words": "order details",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "patterns": [
+    {
+      "pattern": "show payment details for {Advertiser_PatternAny}",
+      "intent": "Payment"
+    },
+    {
+      "pattern": "show order for {Advertiser_PatternAny}",
+      "intent": "GetOrder"
+    },
+    {
+      "pattern": "get order details for {Advertiser_PatternAny}",
+      "intent": "GetOrder"
+    },
+    {
+      "pattern": "show order performance for {Advertiser_PatternAny}",
+      "intent": "Order Performance"
+    }
+  ],
+  "utterances": [
+    {
+      "text": "can you get me the payment status",
+      "intent": "Payment",
+      "entities": []
+    },
+    {
+      "text": "can you help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "check the payment for the advertiser for the order",
+      "intent": "Payment",
+      "entities": []
+    },
+    {
+      "text": "does the order paid",
+      "intent": "Payment",
+      "entities": []
+    },
+    {
+      "text": "find order",
+      "intent": "GetOrder",
+      "entities": []
+    },
+    {
+      "text": "find order details",
+      "intent": "Order Details",
+      "entities": []
+    },
+    {
+      "text": "find order for advertiser",
+      "intent": "GetOrder",
+      "entities": []
+    },
+    {
+      "text": "find the order performance for the order",
+      "intent": "Order Performance",
+      "entities": []
+    },
+    {
+      "text": "get me the order performance",
+      "intent": "Order Performance",
+      "entities": []
+    },
+    {
+      "text": "get order",
+      "intent": "GetOrder",
+      "entities": []
+    },
+    {
+      "text": "get order details",
+      "intent": "Order Details",
+      "entities": []
+    },
+    {
+      "text": "good morning",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hello bot",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help please",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hiya",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "how are you",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "how are you today",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "i don't understand",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i'm stuck",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "is the order paid",
+      "intent": "Payment",
+      "entities": []
+    },
+    {
+      "text": "order performance",
+      "intent": "Order Performance",
+      "entities": []
+    },
+    {
+      "text": "order performance for the advertiser",
+      "intent": "Order Performance",
+      "entities": []
+    },
+    {
+      "text": "show me the order performance",
+      "intent": "Order Performance",
+      "entities": []
+    },
+    {
+      "text": "show me the recent order",
+      "intent": "GetOrder",
+      "entities": []
+    },
+    {
+      "text": "show oder details",
+      "intent": "Order Details",
+      "entities": []
+    },
+    {
+      "text": "show order",
+      "intent": "GetOrder",
+      "entities": []
+    },
+    {
+      "text": "show order details for the recent order",
+      "intent": "GetOrder",
+      "entities": []
+    },
+    {
+      "text": "show payment details",
+      "intent": "Payment",
+      "entities": []
+    },
+    {
+      "text": "what can i say",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what can you do",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what do i do now",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "why doesn't this work",
+      "intent": "Help",
+      "entities": []
+    }
+  ],
+  "settings": []
+}

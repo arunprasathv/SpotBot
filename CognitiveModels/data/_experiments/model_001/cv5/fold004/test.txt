@@ -1,0 +1,8 @@
+Label	Weight	Text
+i_SpotBot	1	find order for advertiser
+i_SpotBot	1	hi
+i_SpotBot	1	show order details for the recent order
+i_SpotBot	1	show me the recent order
+i_SpotBot	1	get order details
+i_SpotBot	1	what do i do now
+i_SpotBot	1	how are you

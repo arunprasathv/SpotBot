@@ -1,0 +1,244 @@
+﻿{
+  "luis_schema_version": "3.2.0",
+  "versionId": "Dispatch",
+  "name": "spot-bot",
+  "desc": "Dispatch model for spot-bot",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "i_SpotBot"
+    }
+  ],
+  "entities": [
+    {
+      "name": "Advertiser_PatternAny",
+      "roles": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [
+    {
+      "name": "i_0",
+      "mode": true,
+      "words": "order details",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "patterns": [
+    {
+      "pattern": "show payment details for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    },
+    {
+      "pattern": "show order for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    },
+    {
+      "pattern": "get order details for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    },
+    {
+      "pattern": "show order performance for {Advertiser_PatternAny}",
+      "intent": "i_SpotBot"
+    }
+  ],
+  "utterances": [
+    {
+      "text": "find the order performance for the order",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "i don't understand",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "order performance",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "how are you today",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "can you get me the payment status",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "show oder details",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "check the payment for the advertiser for the order",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "what can i say",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "is the order paid",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "order performance for the advertiser",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "does the order paid",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "show payment details",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "find order details",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "good morning",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "hiya",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "show order",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "can you help me",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "find order",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "hello bot",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "get order",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "i'm stuck",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "show me the order performance",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "what can you do",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "get me the order performance",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "find order for advertiser",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "show order details for the recent order",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "show me the recent order",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "get order details",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "what do i do now",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "how are you",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "why doesn't this work",
+      "intent": "i_SpotBot",
+      "entities": []
+    },
+    {
+      "text": "help please",
+      "intent": "i_SpotBot",
+      "entities": []
+    }
+  ],
+  "settings": [
+    {
+      "name": "NormalizeDiacritics",
+      "value": "true"
+    }
+  ]
+}

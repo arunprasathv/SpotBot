@@ -8,9 +8,21 @@ namespace Hackathon.SpotBot
 {
     public class ServiceClient : IServiceClient
     {
-        public Order GetOrderByNumber(string id)
+        readonly string token = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwNDA5MDE4LCJuYmYiOjE1NzA0MDkwMTgsImV4cCI6MTU3MDQxMjkxOCwiYWlvIjoiNDJWZ1lDaU4vdUQ4ODdhVVE3SXErKytPQTlmbkFnQT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiJsbktpNXRLVXYwQ2FlaV9EU2s5aEFBIiwidmVyIjoiMS4wIn0.dRaC2BPPJG1qlDdJplenn4GPdPqDm4wy3pGJohiZZ0w1FULDM9UQgztEtxeBk65vHhQuIi8b2nnBBLJCDjb4iO6ZXMNsRijMXeV4cWLWptdBg7jdiEWpa6_pAVJX68998vZn46qmSd4XakzqB-PmE1UJLGvXpKiM8ciQNGCRbUZSO1oRtK4n_NJulOZdqScWf_Y0x4m_-6A2UPopgITLQ7cWtC9mcN-2T_6p6rVN8_YMpKDaNq3SV3GmPXDnFAnhhvw9x05n3s5lDWXNX_XqupNJEHch-KrAAY1eHWyGibM81-DU469ZBhpFZrUX4czl1EbnwlL-h2CHex-Mj3kbBw";
+
+        public Order GetOrderByNumber(string ssId,string orderId)
         {
-            throw new NotImplementedException();
+            string url = $"https://ssbdevsimpleapis.ssedgedevase.p.azurewebsites.net/api/v1/order/{ssId}/{orderId}?code=wN/sS/9SfIyxsbWzG2WQyQ4AiaTXJxAIdShZEAAGR0GlmDKQ0HgQLw==";
+
+            var client = new RestClient(url);
+            var request = new RestRequest(Method.GET);
+
+            request.AddHeader("Authorization", token);
+            request.AddHeader("Content-Type", "application/json");
+
+            var response = client.Execute<Order>(request);
+
+            return response.Data;
         }
 
         public Payment GetPaymentDetails(string orderId)
@@ -20,7 +32,7 @@ namespace Hackathon.SpotBot
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
 
-            request.AddHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwNDU1NzQ1LCJuYmYiOjE1NzA0NTU3NDUsImV4cCI6MTU3MDQ1OTY0NSwiYWlvIjoiNDJWZ1lFaVJMYWdPMWZKVEVuejhmSXRpemF0ZEFBPT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiJnRGdhazE3TXhFZXVRdGFXT1IwTEFBIiwidmVyIjoiMS4wIn0.IUfqZJ0y2Qo_lmEn_HHXc6YCa7txNdqYLBja4P13TIua-LGpAKnoqxoN2Tr_IlSPiJ7eHIeJBwBpE58TrGjJJTscnY4LSKeBi73JMa58xFMvvYpedf3iNm5XuaTlnRgZwMpqxprxJFhYRbhtOx_2mqGzFqLkSSReQE4MsepFkOfvhsEDWzW0eiOUfzliB2PXCie59r1wni-OCvElLrekmSfPx5nzyqo7TachZR3_ym0EwIcJuzMblekERNcavUm5HUNrfkeqZo4vVjz_xw6_rqGQHZXbjvpT9bmyV-Mr646N27aNAfodT-x7zRIN440yKAF1vsJVcf8f9tcVk1u1Yw");
+            request.AddHeader("Authorization", token);
             request.AddHeader("Content-Type", "application/json");
 
             var response = client.Execute<Payment>(request);
@@ -35,7 +47,7 @@ namespace Hackathon.SpotBot
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
 
-            request.AddHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwNDU1NzQ1LCJuYmYiOjE1NzA0NTU3NDUsImV4cCI6MTU3MDQ1OTY0NSwiYWlvIjoiNDJWZ1lFaVJMYWdPMWZKVEVuejhmSXRpemF0ZEFBPT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiJnRGdhazE3TXhFZXVRdGFXT1IwTEFBIiwidmVyIjoiMS4wIn0.IUfqZJ0y2Qo_lmEn_HHXc6YCa7txNdqYLBja4P13TIua-LGpAKnoqxoN2Tr_IlSPiJ7eHIeJBwBpE58TrGjJJTscnY4LSKeBi73JMa58xFMvvYpedf3iNm5XuaTlnRgZwMpqxprxJFhYRbhtOx_2mqGzFqLkSSReQE4MsepFkOfvhsEDWzW0eiOUfzliB2PXCie59r1wni-OCvElLrekmSfPx5nzyqo7TachZR3_ym0EwIcJuzMblekERNcavUm5HUNrfkeqZo4vVjz_xw6_rqGQHZXbjvpT9bmyV-Mr646N27aNAfodT-x7zRIN440yKAF1vsJVcf8f9tcVk1u1Yw");
+            request.AddHeader("Authorization", token);
             request.AddHeader("Content-Type", "application/json");
 
             var response = client.Execute<OrderPerformance>(request);

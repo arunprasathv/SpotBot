@@ -7,7 +7,7 @@ namespace Hackathon.SpotBot
 {
     public interface IServiceClient
     {
-        Order GetOrderByNumber(string id);
+        Order GetOrderByNumber(string ssId,string orderId);
         Payment GetPaymentDetails(string orderId);
         OrderPerformance GetOrderPerformance(string orderId, string selfServiceId);
     }

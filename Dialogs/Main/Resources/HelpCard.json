@@ -13,38 +13,7 @@
         {
           "type": "TextBlock",
           "wrap": true,
-          "text": "This template is a reference solution for Retail Customer Support scenarios. Here are some example phrases to get started:"
-        }
-      ]
-    },
-    {
-      "type": "ColumnSet",
-      "spacing": "Medium",
-      "columns": [
-        {
-          "type": "Column",
-          "items": [
-            {
-              "type": "TextBlock",
-              "horizontalAlignment": "Left",
-              "text": "**Accounts**"
-            }
-          ],
-          "width": 25
-        },
-        {
-          "type": "Column",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "*Reset my password*"
-            },
-            {
-              "type": "TextBlock",
-              "text": "*Update my contact information*"
-            }
-          ],
-          "width": 75
+          "text": "This template is a reference  for Spotlight Customer Support scenarios. Here are some example phrases to get started:"
         }
       ]
     },
@@ -68,11 +37,11 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "*What is my order status?*"
+              "text": "*Get order details*"
             },
             {
               "type": "TextBlock",
-              "text": "*Find a promo code for my order*"
+              "text": "*Find Order for Advertiser*"
             }
           ],
           "width": 75
@@ -89,7 +58,7 @@
             {
               "type": "TextBlock",
               "horizontalAlignment": "Left",
-              "text": "**Returns**"
+              "text": "**Payment**"
             }
           ],
           "width": 25
@@ -99,11 +68,11 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "*Return an item*"
+              "text": "*Is the order paid?*"
             },
             {
               "type": "TextBlock",
-              "text": "*What is the status of my return?*"
+              "text": "*Can you get me the payment status*"
             }
           ],
           "width": 75
@@ -120,7 +89,7 @@
             {
               "type": "TextBlock",
               "horizontalAlignment": "Left",
-              "text": "**Shipping**"
+              "text": "**Order Perfomance**"
             }
           ],
           "width": 25
@@ -130,7 +99,11 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "*How do I get free shipping?*"
+              "text": "*Get me the order performance*"
+            },
+            {
+              "type": "TextBlock",
+              "text": "*Find the order performance for the order*"
             }
           ],
           "width": 75
@@ -147,7 +120,7 @@
             {
               "type": "TextBlock",
               "horizontalAlignment": "Left",
-              "text": "**Stores**"
+              "text": "**Spots**"
             }
           ],
           "width": 25
@@ -157,17 +130,18 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "*Find a store near me*"
+              "text": "*Give me all the spots played for an order?*"
             },
             {
               "type": "TextBlock",
-              "text": "*Buy online, pick up in store*"
+              "text": "*How many spots aired successfully*"
             }
           ],
           "width": 75
         }
       ]
-    }
+    },
+     
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.0"

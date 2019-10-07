@@ -1,0 +1,28 @@
+{
+  "authoringRegion": "westus",
+  "hierarchical": true,
+  "useAllTrainingData": false,
+  "dontReviseUtterance": false,
+  "copyLuisData": true,
+  "normalizeDiacritics": true,
+  "services": [
+    {
+      "intentName": "i_SpotBot",
+      "appId": "e98d4aee-283b-4335-badb-1e1f681a2bef",
+      "authoringKey": "87d99ca480af4574a3c7d1f8ed3abe36",
+      "version": "0.1",
+      "region": "westus",
+      "type": "luis",
+      "name": "SpotBot",
+      "id": "1"
+    }
+  ],
+  "serviceIds": [
+    "1"
+  ],
+  "authoringKey": "87d99ca480af4574a3c7d1f8ed3abe36",
+  "version": "Dispatch",
+  "region": "westus",
+  "type": "dispatch",
+  "name": "spot-bot"
+}
