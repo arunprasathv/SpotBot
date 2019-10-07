@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SpotBot.Models;
 
 namespace Hackathon.SpotBot
 {
@@ -56,5 +57,11 @@ namespace Hackathon.SpotBot
         {
             throw new NotImplementedException();
         }
+
+        public Commission GetCommissionDetails()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
