@@ -27,8 +27,8 @@ namespace Hackathon.SpotBot
                  ShowGreetings
             };
 
-            InitialDialogId = $"{nameof(CheckPaymentDialog)}.mainFlow";
-            AddDialog(new WaterfallDialog($"{nameof(CheckPaymentDialog)}.mainFlow", greetingSteps));
+            InitialDialogId = $"{nameof(GreetingDialog)}.mainFlow";
+            AddDialog(new WaterfallDialog($"{nameof(GreetingDialog)}.mainFlow", greetingSteps));
          }
 
         private async Task<DialogTurnResult> ShowGreetings(WaterfallStepContext stepContext, CancellationToken cancellationToken)

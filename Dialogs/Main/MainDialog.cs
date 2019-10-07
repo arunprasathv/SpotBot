@@ -81,6 +81,10 @@ namespace Hackathon.SpotBot
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.OrderPerformance", null, cancellationToken);
             }
+            else if (topIntent == "Spots")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Spots", null, cancellationToken);
+            }
             else if (topIntent == "Greeting")
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Greetings", null, cancellationToken);
@@ -88,6 +92,10 @@ namespace Hackathon.SpotBot
             else if (topIntent == "Help")
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Help", null, cancellationToken);
+            }
+            else if (topIntent == "Commission")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Commission", null, cancellationToken);
             }
             else
             {
@@ -107,6 +115,8 @@ namespace Hackathon.SpotBot
             AddDialog(new ConfusedDialog($"{nameof(MainDialog)}.Confused", _botStateService, _services));
             AddDialog(new HelpDialog($"{nameof(MainDialog)}.Help", _botStateService, _services));
             AddDialog(new CheckOrderPerformanceDialog($"{nameof(MainDialog)}.OrderPerformance", _botStateService, _services));
+            AddDialog(new CheckSpotDataDialog($"{nameof(MainDialog)}.Spots", _botStateService, _services));
+            AddDialog(new CommissionDialog($"{nameof(MainDialog)}.Commission", _botStateService, _services));
         }
     }
 }

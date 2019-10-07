@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SpotBot.Models;
 
 namespace Hackathon.SpotBot
 {
@@ -53,6 +54,26 @@ namespace Hackathon.SpotBot
             var response = client.Execute<OrderPerformance>(request);
 
             return response.Data;
+        }
+
+        public Commission GetCommissionDetails()
+        {
+            List<Commission> commission = new List<Commission>();
+            
+            Commission response = new Commission()
+            {
+                TotalMonthlyPayout = 7338.16,
+                YTDCommissionsPaid = 19092.57,
+                RevenueAdjustments = -29.91,
+                ChargeBacks = 0
+            };
+
+            return response;
+        }
+
+        public List<Spot> GetSpotData(string oneTimOrderId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
