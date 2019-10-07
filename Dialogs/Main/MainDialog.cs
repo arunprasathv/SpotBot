@@ -9,6 +9,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Hackathon.SpotBot;
 using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
 using Microsoft.Bot.Schema;
+using Hackathon.SpotBot.Data;
 
 namespace Hackathon.SpotBot
 {
@@ -20,13 +21,15 @@ namespace Hackathon.SpotBot
         private IStatePropertyAccessor<CustomerSupportTemplateState> _stateAccessor;
         private MainResponses _responder = new MainResponses();
         private readonly BotStateService _botStateService;
+        private PortalContext _portalContext;
 
-        public MainDialog(BotStateService botStateService, IBotServices services, ConversationState conversationState, UserState userState)
+        public MainDialog(BotStateService botStateService, IBotServices services, ConversationState conversationState, UserState userState, PortalContext portalContext)
             : base(nameof(MainDialog))
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _conversationState = conversationState;
             _userState = userState;
+            _portalContext = portalContext;
             _stateAccessor = _conversationState.CreateProperty<CustomerSupportTemplateState>(nameof(CustomerSupportTemplateState));
             _botStateService = botStateService ?? throw new System.ArgumentNullException(nameof(botStateService));
             InitializeWaterfallDialog();
@@ -97,6 +100,10 @@ namespace Hackathon.SpotBot
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Commission", null, cancellationToken);
             }
+            else if (topIntent == "Invoice_Summary")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.InvoiceSummary", null, cancellationToken);
+            }
             else
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Confused", null, cancellationToken);
@@ -117,6 +124,7 @@ namespace Hackathon.SpotBot
             AddDialog(new CheckOrderPerformanceDialog($"{nameof(MainDialog)}.OrderPerformance", _botStateService, _services));
             AddDialog(new CheckSpotDataDialog($"{nameof(MainDialog)}.Spots", _botStateService, _services));
             AddDialog(new CommissionDialog($"{nameof(MainDialog)}.Commission", _botStateService, _services));
+            AddDialog(new InvoiceSummaryDialog($"{nameof(MainDialog)}.InvoiceSummary", _botStateService, _services, _portalContext));
         }
     }
 }

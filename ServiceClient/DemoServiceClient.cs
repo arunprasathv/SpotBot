@@ -194,5 +194,9 @@ namespace Hackathon.SpotBot
             throw new NotImplementedException();
         }
 
+        public List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,14 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SpotBot.Models;
+using Hackathon.SpotBot.Data;
 
 namespace Hackathon.SpotBot
 {
     public class ServiceClient : IServiceClient
     {
-        readonly string token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwNDY4NTczLCJuYmYiOjE1NzA0Njg1NzMsImV4cCI6MTU3MDQ3MjQ3MywiYWlvIjoiNDJWZ1lGQjc4ZHRYYTIzWnZ2bVYwZE5PM3kzd0FRQT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiJKVXlJQ203UUxFR1d1WEdwUWoxRUFBIiwidmVyIjoiMS4wIn0.EFnZmIGpx5nj1u_8Clgoqs7Lp6KJJU5x-1vH_IWHQMjdjg9uQov1-KLsrE8ry3CEMZGfyduXKJH45vunsXMaCAaTx4pgTALSKB4fNnyQ78gEjRR4zM-yD05xpLg5FpyBMVwt3PGgIwwZuSAgw5R6r671C4-h_foSeF_gAVzmjRFeUEXZt9V8cGKsW80tjPCNl5FqMIQETATuymxzcZL3fypoyANm3KL37TyGwo6zhLdsyUs4jUYBH2IqwbEitbXX3_76DiTYCFNJ2UerAiTejVE_7wu36hOGJCaQ0FkiBBr1q-e6s93BVrhSuqYMC19vsSRkXYfXJ2kT1FMA5rh_bg";
+        private readonly PortalContext _portalContext;
 
-        public Order GetOrderByNumber(string ssId,string orderId)
+        public ServiceClient()
+        {
+
+        }
+
+        public ServiceClient(PortalContext portalContext)
+        {
+            _portalContext = portalContext;
+        }
+
+        readonly string token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyIsImtpZCI6ImFQY3R3X29kdlJPb0VOZzNWb09sSWgydGlFcyJ9.eyJhdWQiOiJlMmQ0NmVhZC04MmU3LTRjY2MtYWI0ZS1hNDZiMDc2ZTBlZWYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEvIiwiaWF0IjoxNTcwNDc4NDE5LCJuYmYiOjE1NzA0Nzg0MTksImV4cCI6MTU3MDQ4MjMxOSwiYWlvIjoiNDJWZ1lMamUwSEdCTldaK3JPd3gxYW1Yb2g1WEFRQT0iLCJhcHBpZCI6ImUyZDQ2ZWFkLTgyZTctNGNjYy1hYjRlLWE0NmIwNzZlMGVlZiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkwNmFlZmU5LTc2YTctNGY2NS1iODJkLTVlYzIwNzc1ZDVhYS8iLCJvaWQiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJzdWIiOiIxZjBmMDY4My1iYWNiLTQwZjItYjg2My0yNWI5MDVlMWZmOTQiLCJ0aWQiOiI5MDZhZWZlOS03NmE3LTRmNjUtYjgyZC01ZWMyMDc3NWQ1YWEiLCJ1dGkiOiJtZGFYdG1KM0cwbXZ1c0xkZ3J1bkFBIiwidmVyIjoiMS4wIn0.lvH-NT8Sy__-u34kIljKpg728KNGeetGUIEU51PpbQoA0G6iMQOH4fWMb2VNWPNo2EK2iXLpkgMQDiTwrplHtWXEqVbLQZoAAbsLJp-MBpPxyW6iKVFGw61Mi4isrbD6CB8iRiYzo6TODK5vaOFMMbNeaw7xOPthU6r4kIfVrrm5IXCHTnY4G6CET4fx9o-TF_WhocBd5MLuebbZqYZw1KQoZjbIWfjbGctwSFrbLGYc6dsfxkGRXW2evW22g7mYsNgkQsj-VlCBzpBgvqncWxDRKTopRb7cRBvjRO-gJFvtrRWF3yo-8TYUyRt8NAzN-X8mFg5bbUuAKN78jVPmkA";
+
+        public Order GetOrderByNumber(string ssId, string orderId)
         {
             string url = $"https://ssbdevsimpleapis.ssedgedevase.p.azurewebsites.net/api/v1/order/{ssId}/{orderId}?code=wN/sS/9SfIyxsbWzG2WQyQ4AiaTXJxAIdShZEAAGR0GlmDKQ0HgQLw==";
 
@@ -59,7 +72,7 @@ namespace Hackathon.SpotBot
         public Commission GetCommissionDetails()
         {
             List<Commission> commission = new List<Commission>();
-            
+
             Commission response = new Commission()
             {
                 TotalMonthlyPayout = 7338.16,
@@ -74,6 +87,27 @@ namespace Hackathon.SpotBot
         public List<Spot> GetSpotData(string oneTimOrderId)
         {
             throw new NotImplementedException();
+        }
+
+        public List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth)
+        {
+            var result = new List<InvoiceSummary>();
+
+            result = (from i in _portalContext.Invoices
+                      join a in _portalContext.Advertisers on i.AdvertiserID equals a.AdvertiserID
+                      join m in _portalContext.Markets on i.MarketID equals m.MarketID
+                      join d in _portalContext.Divisions on m.DivisionID equals d.DivisionID
+                      where a.AdvertiserCode.Equals(advertiserCode) && i.BroadcastMonth.Equals(broadcastMonth)
+                      select new InvoiceSummary
+                      {
+                          Division = d.DivisionName,
+                          Region = m.MarketName,
+                          InvoiceId = i.InvoiceNumber,
+                          InvoiceActualBalance = i.OriginalInvoiceAmount,
+                          InvoiceCurrentBalance = i.CalculatedCurrentBalanceAmount
+                      }).ToList();
+
+            return result;
         }
     }
 }
