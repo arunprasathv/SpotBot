@@ -82,7 +82,7 @@ namespace Hackathon.SpotBot
                                new AdaptiveOpenUrlAction()
                                {
                                  Title = "View Billing Profile",
-                                 Url = new Uri("https://omsspotlightqa.comcast.com/CAM/v3/#/traffic-id-requests/271310")
+                                 Url = new Uri("https://omsspotlightqa.comcast.com/CAM/v3/#/traffic-id-requests/404248")
                                }
                            }
                     }
