@@ -27,8 +27,8 @@ namespace Hackathon.SpotBot
 
             var checkPayment = new WaterfallStep[]
             {
-                PromptForOrderNumber,
                 PromptForSelfServiceId,
+                PromptForOrderNumber,                
                 ShowOrderPerformance
             };
 
@@ -36,30 +36,30 @@ namespace Hackathon.SpotBot
             AddDialog(new WaterfallDialog($"{nameof(CheckOrderPerformanceDialog)}.mainFlow", checkPayment));
             AddDialog(new TextPrompt($"{nameof(CheckOrderPerformanceDialog)}.orderNumber"));
         }
-
-        private async Task<DialogTurnResult> PromptForOrderNumber(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        
+        private async Task<DialogTurnResult> PromptForSelfServiceId(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             return await stepContext.PromptAsync($"{nameof(CheckOrderPerformanceDialog)}.orderNumber", new PromptOptions
             {
-                Prompt = MessageFactory.Text("I am happy to help. Could you please provide the order id?")
+                Prompt = MessageFactory.Text("I am happy to help. Could you please provide the selfservice id?")
                 //RetryPrompt = MessageFactory.Text("The value entered must be between the hours of 9 am and 5 pm.")
             }, cancellationToken);
         }
 
-        private async Task<DialogTurnResult> PromptForSelfServiceId(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PromptForOrderNumber(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            orderId = (string)stepContext.Result;
+            selfServiceId = (string)stepContext.Result;
 
             return await stepContext.PromptAsync($"{nameof(CheckOrderPerformanceDialog)}.orderNumber", new PromptOptions
             {
-                Prompt = MessageFactory.Text("Could you please provide the selfservice id?")
+                Prompt = MessageFactory.Text("Could you please provide the order id?")
                 //RetryPrompt = MessageFactory.Text("The value entered must be between the hours of 9 am and 5 pm.")
             }, cancellationToken);
         }
 
         private async Task<DialogTurnResult> ShowOrderPerformance(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            selfServiceId = (string)stepContext.Result;
+            orderId = (string)stepContext.Result;
 
             var orderPerformance = _client.GetOrderPerformance(orderId, selfServiceId);
 
