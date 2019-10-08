@@ -62,91 +62,91 @@ namespace Hackathon.SpotBot
                 card.Body.Add(new AdaptiveFactSet()
                 {
                     Facts = new List<AdaptiveFact>()
-                {
-                    new AdaptiveFact("Advertiser ID #:", invoiceSummary.First().AdvertiserCode),
-                    new AdaptiveFact("Advertiser Name:", invoiceSummary.First().AdvertiserName),
-                    new AdaptiveFact("Broadcast Month:", invoiceSummary.First().FormattedBroadcaseMonth),
-                    new AdaptiveFact("Total Invoices:", invoiceSummary.Count().ToString()),
-                    new AdaptiveFact("Total Invoice Amount:", invoiceSummary.Sum(i=>i.InvoiceActualBalance).Value.ToString("C")),
-                    new AdaptiveFact("Total Invoice Amount Due:",invoiceSummary.Sum(i=>i.InvoiceCurrentBalance).Value.ToString("C")),
-                }
+                    {
+                        new AdaptiveFact("Advertiser ID:", invoiceSummary.First().AdvertiserCode),
+                        new AdaptiveFact("Advertiser Name:", invoiceSummary.First().AdvertiserName),
+                        new AdaptiveFact("Broadcast Month:", invoiceSummary.First().FormattedBroadcaseMonth),
+                        new AdaptiveFact("Total Invoices:", invoiceSummary.Count().ToString()),
+                        new AdaptiveFact("Total Invoice Amount:", invoiceSummary.Sum(i=>i.InvoiceActualBalance).Value.ToString("C")),
+                        new AdaptiveFact("Total Invoice Amount Due:",invoiceSummary.Sum(i=>i.InvoiceCurrentBalance).Value.ToString("C")),
+                    }
                 });
 
                 card.Body.Add(new AdaptiveColumnSet()
                 {
                     Columns = new List<AdaptiveColumn>()
-                {
-                     new AdaptiveColumn()
-                     {
-                        Items = new List<AdaptiveElement>()
-                        {
-                            new AdaptiveTextBlock()
+                    {
+                         new AdaptiveColumn()
+                         {
+                            Items = new List<AdaptiveElement>()
                             {
-                                Weight = AdaptiveTextWeight.Bolder,
-                                Text = "Division",
-                                Color = AdaptiveTextColor.Accent,
-                                Wrap = true
-                            }
-                        },
-                        Width = "20"
-                     },
-                     new AdaptiveColumn()
-                     {
-                        Items = new List<AdaptiveElement>()
-                        {
-                            new AdaptiveTextBlock()
+                                new AdaptiveTextBlock()
+                                {
+                                    Weight = AdaptiveTextWeight.Bolder,
+                                    Text = "Division",
+                                    Color = AdaptiveTextColor.Accent,
+                                    Wrap = true
+                                }
+                            },
+                            Width = "20"
+                         },
+                         new AdaptiveColumn()
+                         {
+                            Items = new List<AdaptiveElement>()
                             {
-                                Weight = AdaptiveTextWeight.Bolder,
-                                Text = "Region",
-                                Color = AdaptiveTextColor.Accent,
-                                Wrap = true
-                            }
-                        },
-                        Width = "20"
-                     },
-                     new AdaptiveColumn()
-                     {
-                        Items = new List<AdaptiveElement>()
-                        {
-                            new AdaptiveTextBlock()
+                                new AdaptiveTextBlock()
+                                {
+                                    Weight = AdaptiveTextWeight.Bolder,
+                                    Text = "Region",
+                                    Color = AdaptiveTextColor.Accent,
+                                    Wrap = true
+                                }
+                            },
+                            Width = "20"
+                         },
+                         new AdaptiveColumn()
+                         {
+                            Items = new List<AdaptiveElement>()
                             {
-                                Weight = AdaptiveTextWeight.Bolder,
-                                Text = "Invoice#",
-                                Color = AdaptiveTextColor.Accent,
-                                Wrap = true
-                            }
-                        },
-                        Width = "20"
-                     },
-                     new AdaptiveColumn()
-                     {
-                        Items = new List<AdaptiveElement>()
-                        {
-                            new AdaptiveTextBlock()
+                                new AdaptiveTextBlock()
+                                {
+                                    Weight = AdaptiveTextWeight.Bolder,
+                                    Text = "Invoice#",
+                                    Color = AdaptiveTextColor.Accent,
+                                    Wrap = true
+                                }
+                            },
+                            Width = "20"
+                         },
+                         new AdaptiveColumn()
+                         {
+                            Items = new List<AdaptiveElement>()
                             {
-                                Weight = AdaptiveTextWeight.Bolder,
-                                Text = "Invoice Amount",
-                                Color = AdaptiveTextColor.Accent,
-                                Wrap = true
-                            }
-                        },
-                        Width = "20"
-                     },
-                     new AdaptiveColumn()
-                     {
-                        Items = new List<AdaptiveElement>()
-                        {
-                            new AdaptiveTextBlock()
+                                new AdaptiveTextBlock()
+                                {
+                                    Weight = AdaptiveTextWeight.Bolder,
+                                    Text = "Invoice Amount",
+                                    Color = AdaptiveTextColor.Accent,
+                                    Wrap = true
+                                }
+                            },
+                            Width = "20"
+                         },
+                         new AdaptiveColumn()
+                         {
+                            Items = new List<AdaptiveElement>()
                             {
-                                Weight = AdaptiveTextWeight.Bolder,
-                                Text = "Invoice Due",
-                                Color = AdaptiveTextColor.Accent,
-                                Wrap = true
-                            }
-                        },
-                        Width = "20"
-                     }
-                }
+                                new AdaptiveTextBlock()
+                                {
+                                    Weight = AdaptiveTextWeight.Bolder,
+                                    Text = "Invoice Due",
+                                    Color = AdaptiveTextColor.Accent,
+                                    Wrap = true
+                                }
+                            },
+                            Width = "20"
+                         }
+                    }
                 });
 
                 foreach (var invoice in invoiceSummary)
@@ -154,68 +154,68 @@ namespace Hackathon.SpotBot
                     card.Body.Add(new AdaptiveColumnSet()
                     {
                         Columns = new List<AdaptiveColumn>()
-                    {
-                         new AdaptiveColumn()
-                         {
-                            Items = new List<AdaptiveElement>()
-                            {
-                                new AdaptiveTextBlock()
+                        {
+                             new AdaptiveColumn()
+                             {
+                                Items = new List<AdaptiveElement>()
                                 {
-                                    Text = invoice.Division,
-                                    Wrap = true
-                                }
-                            },
-                            Width = "20"
-                         },
-                         new AdaptiveColumn()
-                         {
-                            Items = new List<AdaptiveElement>()
-                            {
-                                new AdaptiveTextBlock()
+                                    new AdaptiveTextBlock()
+                                    {
+                                        Text = invoice.Division,
+                                        Wrap = true
+                                    }
+                                },
+                                Width = "20"
+                             },
+                             new AdaptiveColumn()
+                             {
+                                Items = new List<AdaptiveElement>()
                                 {
-                                    Text = invoice.Region,
-                                    Wrap = true
-                                }
-                            },
-                            Width = "20"
-                         },
-                         new AdaptiveColumn()
-                         {
-                            Items = new List<AdaptiveElement>()
-                            {
-                                new AdaptiveTextBlock()
+                                    new AdaptiveTextBlock()
+                                    {
+                                        Text = invoice.Region,
+                                        Wrap = true
+                                    }
+                                },
+                                Width = "20"
+                             },
+                             new AdaptiveColumn()
+                             {
+                                Items = new List<AdaptiveElement>()
                                 {
-                                    Text = invoice.InvoiceId,
-                                    Wrap = true
-                                }
-                            },
-                            Width = "20"
-                         },
-                         new AdaptiveColumn()
-                         {
-                            Items = new List<AdaptiveElement>()
-                            {
-                                new AdaptiveTextBlock()
+                                    new AdaptiveTextBlock()
+                                    {
+                                        Text = invoice.InvoiceId,
+                                        Wrap = true
+                                    }
+                                },
+                                Width = "20"
+                             },
+                             new AdaptiveColumn()
+                             {
+                                Items = new List<AdaptiveElement>()
                                 {
-                                    Text = invoice.InvoiceActualBalance.Value.ToString("C"),
-                                    Wrap = true
-                                }
-                            },
-                            Width = "20"
-                         },
-                         new AdaptiveColumn()
-                         {
-                            Items = new List<AdaptiveElement>()
-                            {
-                                new AdaptiveTextBlock()
+                                    new AdaptiveTextBlock()
+                                    {
+                                        Text = invoice.InvoiceActualBalance.Value.ToString("C"),
+                                        Wrap = true
+                                    }
+                                },
+                                Width = "20"
+                             },
+                             new AdaptiveColumn()
+                             {
+                                Items = new List<AdaptiveElement>()
                                 {
-                                    Text = invoice.InvoiceCurrentBalance.Value.ToString("C"),
-                                    Wrap = true
-                                }
-                            },
-                            Width = "20"
-                         }
-                    }
+                                    new AdaptiveTextBlock()
+                                    {
+                                        Text = invoice.InvoiceCurrentBalance.Value.ToString("C"),
+                                        Wrap = true
+                                    }
+                                },
+                                Width = "20"
+                             }
+                        }
                     });
                 }
             }

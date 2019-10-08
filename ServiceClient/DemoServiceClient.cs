@@ -8,8 +8,6 @@ namespace Hackathon.SpotBot
 {
     public class DemoServiceClient : IServiceClient
     {
-       
-
         public Order GetOrderByNumber(string ssid,string id)
         {
             //return new Order()
@@ -203,5 +201,9 @@ namespace Hackathon.SpotBot
             throw new NotImplementedException();
         }
 
+        public LatestPayemntInfo GetLatestPayemntInfo(string advertiserCode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

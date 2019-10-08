@@ -95,15 +95,15 @@ namespace Hackathon.SpotBot
 
             CAMAdvertiser response = new CAMAdvertiser()
             {
-               AccountID = 52678,
-               AccountName = "LKQ SELF SERVICE AUTO PARTS",
-               AccountStatus = "Approved",
-               Division = "Central",
-               BillingSchedule = "Broadcast",
-               ContactName = "TODD CHESEBRO",
-               Phone = "574-233-7440",
-               Email = "todd@cworldmedia.com",
-               Address = "1602 S LAFAYETTE BLVD, SOUTH BEND, IN 46613"
+                AccountID = 52678,
+                AccountName = "LKQ SELF SERVICE AUTO PARTS",
+                AccountStatus = "Approved",
+                Division = "Central",
+                BillingSchedule = "Broadcast",
+                ContactName = "TODD CHESEBRO",
+                Phone = "574-233-7440",
+                Email = "todd@cworldmedia.com",
+                Address = "1602 S LAFAYETTE BLVD, SOUTH BEND, IN 46613"
             };
 
             return response;
@@ -130,6 +130,53 @@ namespace Hackathon.SpotBot
                           InvoiceCurrentBalance = i.CalculatedCurrentBalanceAmount
                       }).ToList();
 
+            return result;
+        }
+
+        public LatestPayemntInfo GetLatestPayemntInfo(string advertiserCode)
+        {
+            var result = new LatestPayemntInfo();
+            var prcData = _portalContext.PaymentRequestCustomers.Where(i => i.CustomerNumber.Equals(advertiserCode)).OrderByDescending(i => i.PaymentRequestCustomerID).FirstOrDefault();
+
+            if (prcData != null)
+            {
+                result = (from prc in _portalContext.PaymentRequestCustomers
+                          join pr in _portalContext.PaymentRequests on prc.PaymentRequestID equals pr.PaymentRequestID
+                          join prs in _portalContext.PaymentResponses on prc.PaymentRequestID equals prs.PaymentRequestID
+                          join d in _portalContext.Divisions on prc.DivisionID equals d.DivisionID
+                          join m in _portalContext.Markets on prc.MarketID equals m.MarketID
+                          where prc.PaymentRequestCustomerID == prcData.PaymentRequestCustomerID
+                          select new LatestPayemntInfo
+                          {
+                              AdvertiserCode = prc.CustomerNumber,
+                              AdvertiserName = prc.CustomerName,
+                              Division = d.DivisionName,
+                              Region = m.MarketName,
+                              PaymentType = prc.PrePayAmount <= 0 ? "Pre-Pay" : "Invoice Payment",
+                              Tender = prs.RequestPaymentMethod == "echeck" ? $"{prs.PaymentAccountName} - {prs.RequestAccountNumber}" : $"{prs.PaymentCardName} - {prs.RequestCardNumber.Replace('x',' ').Trim()}",
+                              PaymentAmount = prs.AuthorizeAmount.Value.ToString("C"),
+                              PaymentStatus = prs.Decision=="ACCEPT"?"Successful":"Failed",
+                              ConfirmationNumber = prs.AuthorizeTransactionReferenceIdentifier,
+                              UserPaid = pr.PaymentUserName
+                          }
+                             ).FirstOrDefault();
+
+                if (result != null)
+                {
+                    result.Invoices = (from pri in _portalContext.PaymentRequestInvoices
+                                       where pri.PaymentRequestCustomerID == prcData.PaymentRequestCustomerID
+                                       select new InvoiceData
+                                       {
+                                           InvoiceNumber = pri.InvoiceNumber,
+                                           InvoiceAmount = pri.PaymentAmount.ToString("C")
+                                       }
+                                      ).ToList();
+                }
+            }
+            else
+            {
+                result = null;
+            }
             return result;
         }
     }

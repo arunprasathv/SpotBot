@@ -108,6 +108,10 @@ namespace Hackathon.SpotBot
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.InvoiceSummary", null, cancellationToken);
             }
+            else if (topIntent == "CAP_PAYMENT")
+            {
+                return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.LatestPayment", null, cancellationToken);
+            }
             else if (topIntent == "Goodbye")
             {
                 return await stepContext.BeginDialogAsync($"{nameof(MainDialog)}.Goodbye", null, cancellationToken);
@@ -134,8 +138,8 @@ namespace Hackathon.SpotBot
             AddDialog(new CommissionDialog($"{nameof(MainDialog)}.Commission", _botStateService, _services));
             AddDialog(new AdvertiserDialog($"{nameof(MainDialog)}.CAM_Account", _botStateService, _services));
             AddDialog(new InvoiceSummaryDialog($"{nameof(MainDialog)}.InvoiceSummary", _botStateService, _services, _portalContext));
+            AddDialog(new LatestPaymentDialog($"{nameof(MainDialog)}.LatestPayment", _botStateService, _services, _portalContext));
             AddDialog(new GoodbyeDialog($"{nameof(MainDialog)}.Goodbye", _botStateService, _services));
-
         }
     }
 }
