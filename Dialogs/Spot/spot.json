@@ -1,9 +1,32 @@
 {
     "type": "AdaptiveCard",
   "body": [
+    //{
+    //  "type": "Container",
+    //  "style": "emphasis",
+    //  "items": [
+    //    {
+    //      "type": "ColumnSet",
+    //      "columns": [
+    //        {
+    //          "type": "Column",
+    //          "items": [
+    //            {
+    //              "type": "TextBlock",
+    //              "size": "Large",
+    //              "weight": "Bolder",
+    //              "text": "**SPOTS PLAYED**"
+    //            }
+    //          ],
+    //          "width": "stretch"
+    //        }
+    //      ]
+    //    }
+    //  ],
+    //  "bleed": true
+    //},
     {
       "type": "Container",
-      "style": "emphasis",
       "items": [
         {
           "type": "ColumnSet",
@@ -13,31 +36,10 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "size": "Large",
+                  "size": "Medium",
                   "weight": "Bolder",
-                  "text": "**SPOTS PLAYED**"
-                }
-              ],
-              "width": "stretch"
-            }
-          ]
-        }
-      ],
-      "bleed": true
-    },
-    {
-      "type": "Container",
-      "items": [
-        {
-          "type": "ColumnSet",
-          "columns": [
-            {
-              "type": "Column",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "size": "ExtraLarge",
-                  "text": "OneTIM Order",
+                  //"color":  "accent",
+                  "text": "DETAILS OF SPOTS PLAYED",
                   "wrap": true
                 }
               ],
@@ -67,11 +69,11 @@
           "facts": [
             {
               "title": "OneTIM ID",
-              "value": "2805639"
+              "value": "2671851"
             },
             {
               "title": "Advertiser",
-              "value": "Bill Huge for Mayor"
+              "value": "Cadent Network"
             }
           ]
         }
@@ -90,6 +92,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "text": "LINES",
                   "weight": "Bolder"
                 }
@@ -102,6 +105,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "SPOT ID"
                 }
@@ -114,6 +118,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "SPOT TITLE"
                 }
@@ -126,6 +131,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "DETAILS"
                 }
@@ -248,6 +254,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "ZONE"
                 }
@@ -259,6 +266,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "NETWORK"
                 }
@@ -271,6 +279,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "AIRED AT"
                 }
@@ -282,6 +291,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "STATUS"
                 }
@@ -532,7 +542,6 @@
           "items": [
             {
               "type": "TextBlock",
-              "horizontalAlignment": "Center",
               "text": "{{spotId2}}",
               "wrap": true
             }
@@ -626,6 +635,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "ZONE"
                 }
@@ -637,6 +647,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "NETWORK"
                 }
@@ -649,6 +660,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "AIRED AT"
                 }
@@ -660,6 +672,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "STATUS"
                 }
@@ -862,7 +875,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "FAILED, No AdCopy in insertor",
+                  "text": "No AdCopy in insertor",
                   "color": "attention",
                   "wrap": true
                 }
@@ -884,13 +897,13 @@
             {
               "type": "TextBlock",
               "horizontalAlignment": "Right",
-              "text": "Total Spots Aired",
+              "text": "Total Aired Spots",
               "wrap": true
             },
             {
               "type": "TextBlock",
               "horizontalAlignment": "Right",
-              "text": "Total failed spots",
+              "text": "Total Failed Spots",
               "wrap": true
             }
           ],
@@ -905,6 +918,8 @@
             },
             {
               "type": "TextBlock",
+              "color": "attention",
+              "horizontalContentAlignment": "Right",
               "text": "5"
             }
           ],
@@ -966,8 +981,11 @@
               "title": "SEND EMAIL",
               "style": "positive",
               "data": {
-                "id": "_qkQW8dJlUeLVi7ZMEzYVw",
-                "action": "approve"
+                "source": "Spots",
+                "id":  "1122",
+                "name": "Silpa",
+                "email": "snair204@comcast.com",
+                "tel": "123-234-3456"
               }
             }
           ]
@@ -978,7 +996,7 @@
             {
               "type": "Action.OpenUrl",
               "title": "GO TO ONETIM",
-              "url": "http://onetimstagea-as.cable.comcast.com/OneTimMvc/OrderStatus"
+              "url": "http://onetimstagea-as.cable.comcast.com/OMT/Order/Edit/2671851"
             }
           ]
         }
