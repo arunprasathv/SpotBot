@@ -87,7 +87,7 @@ namespace Hackathon.SpotBot
                                 new AdaptiveTextBlock()
                                 {
                                     Weight = AdaptiveTextWeight.Bolder,
-                                    Text = "InvoiceNumber",
+                                    Text = "Invoice #",
                                     Color = AdaptiveTextColor.Accent,
                                     Wrap = true
                                 }
@@ -101,7 +101,7 @@ namespace Hackathon.SpotBot
                                 new AdaptiveTextBlock()
                                 {
                                     Weight = AdaptiveTextWeight.Bolder,
-                                    Text = "InvoiceAmount",
+                                    Text = "Amount",
                                     Color = AdaptiveTextColor.Accent,
                                     Wrap = true
                                 }
