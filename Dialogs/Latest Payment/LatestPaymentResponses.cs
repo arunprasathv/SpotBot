@@ -45,7 +45,7 @@ namespace Hackathon.SpotBot
                 {
                     Items = new List<AdaptiveElement>()
                     {
-                        new AdaptiveTextBlock() { Text = "No payment data found for given advertiser id", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Bolder, Color = AdaptiveTextColor.Warning },
+                        new AdaptiveTextBlock() { Text = "No payment data found for given advertiser id", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Bolder, Color = AdaptiveTextColor.Attention },
                     },
                 });
             }
