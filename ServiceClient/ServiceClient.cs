@@ -95,15 +95,15 @@ namespace Hackathon.SpotBot
 
             CAMAdvertiser response = new CAMAdvertiser()
             {
-                AccountID = 52678,
-                AccountName = "LKQ SELF SERVICE AUTO PARTS",
-                AccountStatus = "Approved",
-                Division = "Central",
-                BillingSchedule = "Broadcast",
-                ContactName = "TODD CHESEBRO",
-                Phone = "574-233-7440",
-                Email = "todd@cworldmedia.com",
-                Address = "1602 S LAFAYETTE BLVD, SOUTH BEND, IN 46613"
+               AccountID = 1366248,
+               AccountName = "OSTROM SERVICES",
+               AccountStatus = "Approved",
+               Division = "Eastern",
+               BillingSchedule = "Broadcast",
+               ContactName = "DJ OSTROM",
+               Phone = "540-342-0555",
+               Email = "nohare@swickmediaservices.com",
+               Address = "1530 PLANTATION RD NE, ROANOKE, VA 24012"
             };
 
             return response;

@@ -1,9 +1,32 @@
 {
     "type": "AdaptiveCard",
   "body": [
+    //{
+    //  "type": "Container",
+    //  "style": "emphasis",
+    //  "items": [
+    //    {
+    //      "type": "ColumnSet",
+    //      "columns": [
+    //        {
+    //          "type": "Column",
+    //          "items": [
+    //            {
+    //              "type": "TextBlock",
+    //              "size": "Large",
+    //              "weight": "Bolder",
+    //              "text": "**SPOTS PLAYED**"
+    //            }
+    //          ],
+    //          "width": "stretch"
+    //        }
+    //      ]
+    //    }
+    //  ],
+    //  "bleed": true
+    //},
     {
       "type": "Container",
-      "style": "emphasis",
       "items": [
         {
           "type": "ColumnSet",
@@ -13,31 +36,10 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "size": "Large",
+                  "size": "Medium",
                   "weight": "Bolder",
-                  "text": "**SPOTS PLAYED**"
-                }
-              ],
-              "width": "stretch"
-            }
-          ]
-        }
-      ],
-      "bleed": true
-    },
-    {
-      "type": "Container",
-      "items": [
-        {
-          "type": "ColumnSet",
-          "columns": [
-            {
-              "type": "Column",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "size": "ExtraLarge",
-                  "text": "OneTIM Order",
+                  //"color":  "accent",
+                  "text": "DETAILS OF SPOTS PLAYED",
                   "wrap": true
                 }
               ],
@@ -67,11 +69,11 @@
           "facts": [
             {
               "title": "OneTIM ID",
-              "value": "2805639"
+              "value": "2671851"
             },
             {
               "title": "Advertiser",
-              "value": "Bill Huge for Mayor"
+              "value": "Cadent Network"
             }
           ]
         }
@@ -90,6 +92,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "text": "LINES",
                   "weight": "Bolder"
                 }
@@ -102,6 +105,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "SPOT ID"
                 }
@@ -114,6 +118,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "SPOT TITLE"
                 }
@@ -126,6 +131,7 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
                   "text": "DETAILS"
                 }
@@ -248,45 +254,48 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
-                  "text": "ZONE"
+                  "text": "Zone"
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
-                  "text": "NETWORK"
+                  "text": "Network"
                 }
               ],
-              "width": "auto"
-            },
-            {
-              "type": "Column",
-              "spacing": "Large",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "weight": "Bolder",
-                  "text": "AIRED AT"
-                }
-              ],
-              "width": "stretch"
+              "width": "15"
             },
             {
               "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
-                  "text": "STATUS"
+                  "text": "Aired At"
                 }
               ],
-              "width": "auto"
+              "width": "40"
+            },
+            {
+              "type": "Column",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "color": "accent",
+                  "weight": "Bolder",
+                  "text": "Status"
+                }
+              ],
+              "width": "35"
             }
           ]
         },
@@ -298,15 +307,14 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{zone1}}  ",
+                  "text": "{{zone1}}",
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -314,11 +322,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -326,7 +333,7 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
@@ -337,7 +344,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         },
@@ -353,7 +360,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
@@ -364,11 +371,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -376,7 +382,7 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
@@ -387,7 +393,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         },
@@ -399,15 +405,14 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{zone3}}  ",
+                  "text": "{{zone3}}",
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -415,11 +420,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -427,7 +431,7 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
@@ -439,7 +443,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         },
@@ -451,11 +455,11 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{zone4}}  ",
+                  "text": "{{zone4}}",
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
@@ -466,11 +470,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -478,7 +481,7 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
@@ -490,7 +493,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         }
@@ -532,7 +535,6 @@
           "items": [
             {
               "type": "TextBlock",
-              "horizontalAlignment": "Center",
               "text": "{{spotId2}}",
               "wrap": true
             }
@@ -626,22 +628,24 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
-                  "text": "ZONE"
+                  "text": "Zone"
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
-                  "text": "NETWORK"
+                  "text": "Network"
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
@@ -649,22 +653,24 @@
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
-                  "text": "AIRED AT"
+                  "text": "Aired At"
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
+                  "color": "accent",
                   "weight": "Bolder",
-                  "text": "STATUS"
+                  "text": "Status"
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         },
@@ -676,15 +682,14 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{zone1}}  ",
+                  "text": "{{zone1}}",
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -692,11 +697,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -704,7 +708,7 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
@@ -715,7 +719,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         },
@@ -727,11 +731,11 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{zone2}}  ",
+                  "text": "{{zone2}}",
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
@@ -742,11 +746,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -754,7 +757,7 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
@@ -765,7 +768,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         },
@@ -781,7 +784,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
@@ -792,11 +795,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -804,19 +806,19 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{isSuccess3}}",
+                  "text": "Device Time Out",
                   "color": "attention",
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         },
@@ -832,7 +834,7 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "10"
             },
             {
               "type": "Column",
@@ -843,11 +845,10 @@
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "15"
             },
             {
               "type": "Column",
-              "spacing": "Medium",
               "items": [
                 {
                   "type": "TextBlock",
@@ -855,19 +856,19 @@
                   "wrap": true
                 }
               ],
-              "width": "stretch"
+              "width": "40"
             },
             {
               "type": "Column",
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "FAILED, No AdCopy in insertor",
+                  "text": "No AdCopy in insertor",
                   "color": "attention",
                   "wrap": true
                 }
               ],
-              "width": "auto"
+              "width": "35"
             }
           ]
         }
@@ -884,13 +885,13 @@
             {
               "type": "TextBlock",
               "horizontalAlignment": "Right",
-              "text": "Total Spots Aired",
+              "text": "Total Aired Spots",
               "wrap": true
             },
             {
               "type": "TextBlock",
               "horizontalAlignment": "Right",
-              "text": "Total failed spots",
+              "text": "Total Failed Spots",
               "wrap": true
             }
           ],
@@ -905,6 +906,8 @@
             },
             {
               "type": "TextBlock",
+              "color": "attention",
+              "horizontalContentAlignment": "Right",
               "text": "5"
             }
           ],
@@ -966,8 +969,11 @@
               "title": "SEND EMAIL",
               "style": "positive",
               "data": {
-                "id": "_qkQW8dJlUeLVi7ZMEzYVw",
-                "action": "approve"
+                "source": "Spots",
+                "id":  "1122",
+                "name": "Silpa",
+                "email": "snair204@comcast.com",
+                "tel": "123-234-3456"
               }
             }
           ]
@@ -978,7 +984,7 @@
             {
               "type": "Action.OpenUrl",
               "title": "GO TO ONETIM",
-              "url": "http://onetimstagea-as.cable.comcast.com/OneTimMvc/OrderStatus"
+              "url": "http://onetimstagea-as.cable.comcast.com/OMT/Order/Edit/2671851"
             }
           ]
         }
