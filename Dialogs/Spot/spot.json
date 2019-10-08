@@ -52,9 +52,13 @@
                   "type": "ActionSet",
                   "actions": [
                     {
-                      "type": "Action.OpenUrl",
+                      "type": "Action.Submit",
                       "title": "EXPORT AS EXCEL / PDF",
-                      "url": "https://adaptivecards.io"
+                      "style": "positive",
+                      "data": {
+                        "source": "Spots",
+                        "id": "pdf"
+                      }
                     }
                   ]
                 }
@@ -970,7 +974,7 @@
               "style": "positive",
               "data": {
                 "source": "Spots",
-                "id":  "1122",
+                "id":  "email",
                 "name": "Silpa",
                 "email": "snair204@comcast.com",
                 "tel": "123-234-3456"

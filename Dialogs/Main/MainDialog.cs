@@ -10,6 +10,13 @@ using Hackathon.SpotBot;
 using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
 using Microsoft.Bot.Schema;
 using Hackathon.SpotBot.Data;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Document = iTextSharp.text.Document;
+using Newtonsoft.Json;
+using System.Net.Mail;
+
 
 namespace Hackathon.SpotBot
 {
@@ -22,6 +29,7 @@ namespace Hackathon.SpotBot
         private MainResponses _responder = new MainResponses();
         private readonly BotStateService _botStateService;
         private PortalContext _portalContext;
+        private IServiceClient _client;
 
         public MainDialog(BotStateService botStateService, IBotServices services, ConversationState conversationState, UserState userState, PortalContext portalContext)
             : base(nameof(MainDialog))
@@ -32,6 +40,7 @@ namespace Hackathon.SpotBot
             _portalContext = portalContext;
             _stateAccessor = _conversationState.CreateProperty<CustomerSupportTemplateState>(nameof(CustomerSupportTemplateState));
             _botStateService = botStateService ?? throw new System.ArgumentNullException(nameof(botStateService));
+            _client = new DemoServiceClient();
             InitializeWaterfallDialog();
 
             RegisterDialogs();
@@ -70,6 +79,16 @@ namespace Hackathon.SpotBot
             //          var result = luisResult.ConnectedServiceResult;
             //        var topIntent = result.TopScoringIntent.Intent;
 
+            var activity = (stepContext.Context).Activity as Activity;
+            dynamic activityValue = activity.Value ?? null;
+            if (activityValue != null && activityValue.source.ToString() == "Spots")
+            {
+                if (activityValue.id == "pdf")
+                    ExportAsPDF();
+                if (activityValue.id == "email")
+                    CreateEmailMessage(activityValue);
+                topIntent = "Help";
+            }
 
             if (topIntent == "Order_Details" || topIntent == "GetOrder")
             {
@@ -140,6 +159,92 @@ namespace Hackathon.SpotBot
             AddDialog(new InvoiceSummaryDialog($"{nameof(MainDialog)}.InvoiceSummary", _botStateService, _services, _portalContext));
             AddDialog(new LatestPaymentDialog($"{nameof(MainDialog)}.LatestPayment", _botStateService, _services, _portalContext));
             AddDialog(new GoodbyeDialog($"{nameof(MainDialog)}.Goodbye", _botStateService, _services));
+        }
+
+        private void CreateEmailMessage(dynamic emailValue)
+        {
+            var spotData = _client.GetSpotData("2805639");
+            var spotJson = JsonConvert.SerializeObject(spotData);
+
+            SmtpClient SmtpServer = new SmtpClient("mailrelay.comcast.com");
+            MailMessage mail = SendMailCore(spotJson, emailValue);
+
+            SmtpServer.Port = 587;
+            SmtpServer.EnableSsl = true;
+            SmtpServer.Send(mail);
+
+        }
+
+        private static MailMessage SendMailCore(string spotJson, dynamic emailValue)
+        {
+            MailMessage mail = new MailMessage()
+            {
+                From = new MailAddress("snair204@comcast.com"),
+                Subject = "Details of spots played for order 2805639 requested by " + emailValue.name,
+                Body = spotJson,
+                IsBodyHtml = true
+            };
+            mail.To.Add(emailValue.email.ToString());
+
+            return mail;
+        }
+
+        private void ExportAsPDF()
+        {
+            Document doc = new Document(PageSize.LETTER, 10, 10, 42, 35);
+            PdfWriter w = PdfWriter.GetInstance(doc, new FileStream(@"spotsPlayed.pdf", FileMode.Create));
+            doc.Open();
+
+            //Add border to page
+            PdfContentByte content = w.DirectContent;
+            iTextSharp.text.Rectangle rectangle = new iTextSharp.text.Rectangle(doc.PageSize);
+            //customized border sizes
+            rectangle.Left += doc.LeftMargin - 5;
+            rectangle.Right -= doc.RightMargin - 5;
+            rectangle.Top -= doc.TopMargin - 5;
+            rectangle.Bottom += doc.BottomMargin - 5;
+            content.SetColorStroke(BaseColor.BLACK); // setting the color of the border to black
+            content.Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Width, rectangle.Height);
+            content.Stroke();
+
+            //setting font type, font size and font color
+            iTextSharp.text.Font font = iTextSharp.text.FontFactory.GetFont(FontFactory.TIMES_ROMAN, 30, BaseColor.BLUE);
+            Paragraph prg = new Paragraph();
+            prg.Alignment = Element.ALIGN_CENTER; // adjust the alignment of the heading
+            prg.Add(new Chunk("Details of all spots played", font)); //adding a heading to the PDF
+            doc.Add(prg); //add the component we created to the document
+
+            // Data
+            var spotData = _client.GetSpotData(" ");
+            var spotJson = JsonConvert.SerializeObject(spotData);
+            Type t = spotData[0].GetType();
+            PdfPTable table = new PdfPTable(t.GetProperties().Count());
+
+            for (int j = 0; j < t.GetProperties().Count(); j++)
+            {
+                PdfPCell cell = new PdfPCell(); //create object from the pdfpcell class
+                cell.BackgroundColor = BaseColor.LIGHT_GRAY; //set color of cells to gray
+                cell.AddElement(new Chunk(t.GetProperties()[j].Name.ToUpper(), font));
+                table.AddCell(cell);
+            }
+
+            //add actual rows from grid to table
+            for (int i = 0; i < spotData.Count; i++)
+            {
+                table.WidthPercentage = 100; //set width of the table
+                for (int k = 0; k < t.GetProperties().Count(); k++)
+                {
+                    // get the value of each cell in the dataTable tblemp
+                    table.AddCell(new Phrase(spotData[i].SpotID.ToString()));
+                }
+            }
+
+            //doc.Add(table);
+
+            Paragraph spotParagraph = new Paragraph(spotJson, FontFactory.GetFont("Tahoma", 14));
+            doc.Add(spotParagraph);
+
+            doc.Close();
         }
     }
 }
