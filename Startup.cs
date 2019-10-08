@@ -10,11 +10,26 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Schema;
+using Microsoft.Extensions.Configuration;
+using Hackathon.SpotBot.Data;
 
 namespace Hackathon.SpotBot
 {
     public class Startup
     {
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("dependencies.json", optional: true, reloadOnChange: true)
+                 .AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
+
+        public IConfigurationRoot Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -51,6 +66,12 @@ namespace Hackathon.SpotBot
             //        await context.SendActivityAsync(new Activity(type: ActivityTypes.Trace, text: $"Error: {exception.Message} | {exception.StackTrace}"));
             //    };
             //});
+
+            services.AddSingleton<IConfigurationRoot>(Configuration);
+            services.AddSingleton<IServiceClient, ServiceClient>();
+
+            EntityFrameworkConfiguration.ConfigureService(services, Configuration);
+
             ConfigureDialogs(services);
 
             services.AddTransient<IBot, CustomerSupportTemplate<MainDialog>>();

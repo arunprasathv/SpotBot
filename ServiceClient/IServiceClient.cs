@@ -14,5 +14,6 @@ namespace Hackathon.SpotBot
         List<Spot> GetSpotData(string oneTimOrderId);
         Commission GetCommissionDetails();
         CAMAdvertiser GetAdvertiserDetails();
+        List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth);
     }
 }

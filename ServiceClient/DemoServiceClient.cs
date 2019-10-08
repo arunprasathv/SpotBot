@@ -107,7 +107,7 @@ namespace Hackathon.SpotBot
                         ScheduledAt = new DateTime(2019, 09, 13, 5, 48, 30),
                         AiredAt = new DateTime(2019, 09, 13, 5, 47, 37),
                         AiredSuccessful = false,
-                        ErrorStatus = "Failed, No Cue in Window"
+                        ErrorStatus = "Insertion Conflict"
                     },
                     new SpotLog()
                     {
@@ -117,7 +117,7 @@ namespace Hackathon.SpotBot
                         ScheduledAt = new DateTime(2019, 09, 13, 13, 20, 30),
                         AiredAt = new DateTime(2019, 09, 13, 13, 15, 00),
                         AiredSuccessful = false,
-                        ErrorStatus = "Failed, Cued Late"
+                        ErrorStatus = "Cued Late"
                     }
                 }
             };
@@ -194,6 +194,10 @@ namespace Hackathon.SpotBot
             throw new NotImplementedException();
         }
 
+        public List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth)
+        {
+            throw new NotImplementedException();
+        }
         public CAMAdvertiser GetAdvertiserDetails()
         {
             throw new NotImplementedException();
