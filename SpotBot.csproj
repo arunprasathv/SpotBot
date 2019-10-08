@@ -7,6 +7,13 @@
 
   <ItemGroup>
     <None Remove="Dialogs\Main\Resources\comcast-logo.png" />
+    <None Remove="Images\commission.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\commission.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +29,10 @@
     <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.5.1" />
     <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.5.1" />
     <PackageReference Include="Microsoft.Bot.Builder.TemplateManager" Version="4.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
     <PackageReference Include="RestSharp" Version="106.6.10" />
   </ItemGroup>
 

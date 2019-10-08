@@ -25,7 +25,7 @@ namespace Hackathon.SpotBot
             _services = services;
             _botStateService = botStateService ?? throw new ArgumentNullException(nameof(botStateService));
 
-            var checkPayment = new WaterfallStep[]
+            var checkOrderPerformance = new WaterfallStep[]
             {
                 PromptForSelfServiceId,
                 PromptForOrderNumber,                
@@ -33,8 +33,9 @@ namespace Hackathon.SpotBot
             };
 
             InitialDialogId = $"{nameof(CheckOrderPerformanceDialog)}.mainFlow";
-            AddDialog(new WaterfallDialog($"{nameof(CheckOrderPerformanceDialog)}.mainFlow", checkPayment));
+            AddDialog(new WaterfallDialog($"{nameof(CheckOrderPerformanceDialog)}.mainFlow", checkOrderPerformance));
             AddDialog(new TextPrompt($"{nameof(CheckOrderPerformanceDialog)}.orderNumber"));
+            AddDialog(new TextPrompt($"{nameof(CheckOrderPerformanceDialog)}.selfServiceId"));
         }
         
         private async Task<DialogTurnResult> PromptForSelfServiceId(WaterfallStepContext stepContext, CancellationToken cancellationToken)
@@ -50,7 +51,7 @@ namespace Hackathon.SpotBot
         {
             selfServiceId = (string)stepContext.Result;
 
-            return await stepContext.PromptAsync($"{nameof(CheckOrderPerformanceDialog)}.orderNumber", new PromptOptions
+            return await stepContext.PromptAsync($"{nameof(CheckOrderPerformanceDialog)}.selfServiceId", new PromptOptions
             {
                 Prompt = MessageFactory.Text("Could you please provide the order id?")
                 //RetryPrompt = MessageFactory.Text("The value entered must be between the hours of 9 am and 5 pm.")

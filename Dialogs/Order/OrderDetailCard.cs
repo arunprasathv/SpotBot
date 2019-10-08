@@ -119,7 +119,7 @@ namespace Hackathon.SpotBot
                 i++;
             }
 );
-           adaptiveCardJson = adaptiveCardJson.Replace("{{adVideoURL}}", "https://ssbdevassetlibrary.blob.core.windows.net/users/138477ff-1341-5ec6-d350-f1185db9b5f6/68F43936-E1E9-42BB-9089-A498AD8A2E32_UploadedCreative.mp4?sv=2018-03-28&sig=6Rs6Pg%2FDg65lCjOcq59pHGLQ1VGOomsLaE9WI%2FCQxzQ%3D&spr=https&se=2019-10-06T02%3A55%3A33Z&srt=co&ss=b&sp=rcwdl");
+           adaptiveCardJson = adaptiveCardJson.Replace("{{adVideoURL}}", "https://ssbdevassetlibrary.blob.core.windows.net/users/138477ff-1341-5ec6-d350-f1185db9b5f6/68F43936-E1E9-42BB-9089-A498AD8A2E32_UploadedCreative.mp4?sv=2018-03-28&sig=Fj%2F0tyMc7qM%2F%2FJ87aK5EOTB83d1ia6W6NvgZRv3Wv2g%3D&spr=https&se=2019-10-07T15%3A13%3A58Z&srt=co&ss=b&sp=rcwdl");
 
            var adaptiveCardAttachment = new Attachment()
             {

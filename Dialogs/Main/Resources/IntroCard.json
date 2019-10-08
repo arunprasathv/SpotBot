@@ -32,7 +32,7 @@
                                 },
                               {
                                 "type": "TextBlock",
-                                "text": "Hi, I'm the Virtual Assistant,* a chatbot designed to help you. Ask me your questions about Self Service Customers.  ",
+                                "text": "Hi, I'm the Virtual Assistant, designed to give Information at your Finger Tips. Ask me your questions about Self Service Customers and much more.",
                                 "isSubtle": "yes",
                                 "wrap": true
                               }

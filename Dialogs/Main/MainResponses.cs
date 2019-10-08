@@ -12,16 +12,18 @@ namespace Hackathon.SpotBot
     public class MainResponses : TemplateManager
     {
         // Constants
-         public const string Intro = "intro";
+        public const string Intro = "intro";
         public const string Greeting = "greeting";
         public const string Confused = "confused";
+        public const string Goodbye = "goodbye";
 
         private static LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
             ["default"] = new TemplateIdMap
             {
-                { Greeting, (context, data) => "Hi there!" },
+                { Greeting, (context, data) => "Welcome Arun! In a few words, what do you need help with today? Not sure where to start, Type Help" },
                 { Confused, (context, data) => "I'm sorry, I'm not able to help with that." },
+                { Goodbye, (context, data) => "Of course, have a great Day." },
                 { Intro, (context, data) => SendIntroCard(context, data) },
             },
             

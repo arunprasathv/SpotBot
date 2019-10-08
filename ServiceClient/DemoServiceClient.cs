@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SpotBot.Models;
 
 namespace Hackathon.SpotBot
 {
@@ -187,5 +188,20 @@ namespace Hackathon.SpotBot
 
             return listSpots;
         }
+
+        public Commission GetCommissionDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth)
+        {
+            throw new NotImplementedException();
+        }
+        public CAMAdvertiser GetAdvertiserDetails()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

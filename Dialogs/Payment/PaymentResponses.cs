@@ -60,10 +60,10 @@ namespace Hackathon.SpotBot
                 {
                                     new AdaptiveColumn()
                        {
-                           Width = "5",
+                           Width = "10",
                            Items = new List<AdaptiveElement>()
                 {
-                    new AdaptiveTextBlock() { Text = "Payment Details", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
+                    new AdaptiveTextBlock() { Text = "Payment Details", Color= AdaptiveTextColor.Accent , Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder },
                 },
                    },
                    new AdaptiveColumn()
@@ -90,11 +90,11 @@ namespace Hackathon.SpotBot
                     new AdaptiveFact("Order #:", paymentDetails.OrderNumber.ToString()),
                     new AdaptiveFact("Order GUID:", paymentDetails.OrderGuid),
                     new AdaptiveFact("Payment Amount:", paymentDetails.Amount.ToString("C")),
-                    new AdaptiveFact("Payment Status", paymentDetails.Decision),
-                   // new AdaptiveFact("Card Name", paymentDetails.CardName),
-                    new AdaptiveFact("Card Number",paymentDetails.CardNumber??"1234"),
-                    new AdaptiveFact("Payment Date",paymentDetails.DateTimeUtc.Date.ToString()),
-                    new AdaptiveFact("Message",paymentDetails.Message)
+                    new AdaptiveFact("Payment Status:", paymentDetails.Decision),
+                   //new AdaptiveFact("Card Name", paymentDetails.CardName),
+                    new AdaptiveFact("Card Number:",paymentDetails.CardNumber??"1234"),
+                    new AdaptiveFact("Payment Date:",paymentDetails.DateTimeUtc.Date.ToString()),
+                    new AdaptiveFact("Message:",paymentDetails.Message)
                 }
             });
 

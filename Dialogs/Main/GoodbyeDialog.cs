@@ -9,33 +9,33 @@ using System.Threading.Tasks;
 
 namespace Hackathon.SpotBot
 {
-    public class GreetingDialog : ComponentDialog
+    public class GoodbyeDialog : ComponentDialog
     {
         private IServiceClient _client;
         private IBotServices _services;
         private readonly BotStateService _botStateService;
         private MainResponses _responder = new MainResponses();
 
-        public GreetingDialog(string dialogId, BotStateService botStateService, IBotServices services) : base(dialogId)
+        public GoodbyeDialog(string dialogId, BotStateService botStateService, IBotServices services) : base(dialogId)
         {
             _client = new ServiceClient();
             _services = services;
             _botStateService = botStateService ?? throw new ArgumentNullException(nameof(botStateService));
 
-            var greetingSteps = new WaterfallStep[]
+            var goodbyeSteps = new WaterfallStep[]
             {
-                 ShowGreetings
+                 ShowGGoodbye
             };
 
             InitialDialogId = $"{nameof(GreetingDialog)}.mainFlow";
-            AddDialog(new WaterfallDialog($"{nameof(GreetingDialog)}.mainFlow", greetingSteps));
-         }
+            AddDialog(new WaterfallDialog($"{nameof(GreetingDialog)}.mainFlow", goodbyeSteps));
+        }
 
-        private async Task<DialogTurnResult> ShowGreetings(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> ShowGGoodbye(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
 
-            await _responder.ReplyWith(stepContext.Context, MainResponses.Greeting);
- 
+            await _responder.ReplyWith(stepContext.Context, MainResponses.Goodbye);
+
             return await stepContext.EndDialogAsync();
         }
     }

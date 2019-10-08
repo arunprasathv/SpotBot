@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SpotBot.Models;
 
 namespace Hackathon.SpotBot
 {
@@ -11,5 +12,8 @@ namespace Hackathon.SpotBot
         Payment GetPaymentDetails(string orderId);
         OrderPerformance GetOrderPerformance(string orderId, string selfServiceId);
         List<Spot> GetSpotData(string oneTimOrderId);
+        Commission GetCommissionDetails();
+        CAMAdvertiser GetAdvertiserDetails();
+        List<InvoiceSummary> GetInvoiceSummary(string advertiserCode, string broadcastMonth);
     }
 }

@@ -54,10 +54,10 @@ namespace Hackathon.SpotBot
                     new AdaptiveFact("Order #:", orderPerformance.OrderId.ToString()),
                     new AdaptiveFact("Reach:", orderPerformance.Reach.ToString()),
                     new AdaptiveFact("Frequency:", orderPerformance.Frequency.ToString()),
-                    new AdaptiveFact("Average Ad Completion Rate", orderPerformance.AverageAdCompletionRate.ToString()),
-                    new AdaptiveFact("Cumulative Impression Count", orderPerformance.CumulativeImpressionCount.ToString()),
-                    new AdaptiveFact("Spot Count",orderPerformance.SpotCount.ToString()),
-                    new AdaptiveFact("Spot Count Aired",orderPerformance.SpotCountAired.ToString())                    
+                    new AdaptiveFact("Average Ad Completion Rate:", orderPerformance.AverageAdCompletionRate.ToString()),
+                    new AdaptiveFact("Cumulative Impression Count:", orderPerformance.CumulativeImpressionCount.ToString()),
+                    new AdaptiveFact("Spot Count:",orderPerformance.SpotCount.ToString()),
+                    new AdaptiveFact("Spot Count Aired:",orderPerformance.SpotCountAired.ToString())                    
                 }
             });
 
@@ -162,12 +162,12 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Network Abbreviation",
+                                       Text = "Abbreviation",
                                        Color = AdaptiveTextColor.Accent,
                                        Wrap = true
                                    }
                                },
-                               Width = AdaptiveColumnWidth.Auto
+                               Width = "50"
                            },
 
                            new AdaptiveColumn()
@@ -177,12 +177,12 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Network Impression Percentage",
+                                       Text = "Impression %",
                                        Color = AdaptiveTextColor.Accent,
                                        Wrap = true
                                    }
                                },
-                               Width = AdaptiveColumnWidth.Auto
+                               Width = "50"
                            }
                        }
                    }
@@ -195,14 +195,18 @@ namespace Hackathon.SpotBot
                 card.Body.Add(new AdaptiveContainer()
                 {
                     Id = $"npContent{i++}",                              
-                    IsVisible = false,
-                    Style = AdaptiveContainerStyle.Emphasis,
+                    IsVisible = false,                    
                     Items = new List<AdaptiveElement>()
                     {
                         new AdaptiveColumnSet()
                         {
                             Columns = new List<AdaptiveColumn>()
                             {
+                                new AdaptiveColumn()
+                                {
+                                    Width = "5"
+                                },
+
                                 new AdaptiveColumn()
                                 {
                                     Items = new List<AdaptiveElement>
@@ -224,7 +228,7 @@ namespace Hackathon.SpotBot
                                             Text = item.NetworkImpressionPercentage.ToString()
                                         }
                                     },
-                                    Width = "50"
+                                    Width = "45"
                                 }
                             }
                         }
@@ -328,6 +332,11 @@ namespace Hackathon.SpotBot
                        {
                            new AdaptiveColumn()
                            {
+
+                           },
+
+                           new AdaptiveColumn()
+                           {
                                Items = new List<AdaptiveElement>()
                                {
                                    new AdaptiveTextBlock()
@@ -338,7 +347,7 @@ namespace Hackathon.SpotBot
                                        Wrap = true
                                    }
                                },
-                               Width = AdaptiveColumnWidth.Auto
+                               Width = "40"
                            },
 
                            new AdaptiveColumn()
@@ -348,12 +357,12 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Daily Impression Count",
+                                       Text = "Daily Count",
                                        Color = AdaptiveTextColor.Accent,
                                        Wrap = true
                                    }
                                },
-                               Width = AdaptiveColumnWidth.Auto
+                               Width = "30"
                            },
 
                            new AdaptiveColumn()
@@ -363,12 +372,12 @@ namespace Hackathon.SpotBot
                                    new AdaptiveTextBlock()
                                    {
                                        Weight = AdaptiveTextWeight.Bolder,
-                                       Text = "Cumulative Impression Count",
+                                       Text = "Cumulative Count",
                                        Color = AdaptiveTextColor.Accent,
                                        Wrap = true
                                    }
                                },
-                               Width = AdaptiveColumnWidth.Auto
+                               Width = "30"
                            }
 
                        }
@@ -383,13 +392,18 @@ namespace Hackathon.SpotBot
                 {
                     Id = $"idContent{j++}",
                     IsVisible = false,
-                    Style = AdaptiveContainerStyle.Emphasis,
+                    Style = AdaptiveContainerStyle.Default,
                     Items = new List<AdaptiveElement>()
                     {
                         new AdaptiveColumnSet()
                         {
                             Columns = new List<AdaptiveColumn>()
                             {
+                                new AdaptiveColumn()
+                                {
+                                    Width = "5"
+                                },
+
                                 new AdaptiveColumn()
                                 {
                                     Items = new List<AdaptiveElement>
@@ -399,7 +413,7 @@ namespace Hackathon.SpotBot
                                             Text = item.AirDate.ToShortDateString()
                                         }
                                     },
-                                    Width = "50"
+                                    Width = "40"
                                 },
 
                                 new AdaptiveColumn()
@@ -411,7 +425,7 @@ namespace Hackathon.SpotBot
                                             Text = item.DailyImpressionCount.ToString()
                                         }
                                     },
-                                    Width = "50"
+                                    Width = "30"
                                 },
 
                                 new AdaptiveColumn()
@@ -423,7 +437,7 @@ namespace Hackathon.SpotBot
                                             Text = item.CumulativeImpressionCount.ToString()
                                         }
                                     },
-                                    Width = "50"
+                                    Width = "30"
                                 }
                             }
                         }
