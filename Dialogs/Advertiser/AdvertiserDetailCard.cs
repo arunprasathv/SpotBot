@@ -45,6 +45,7 @@ namespace Hackathon.SpotBot
         { 
             var advertiserDetails = _client.GetAdvertiserDetails();
 
+
             await _responder.ReplyWith(stepContext.Context, "Thank you. Here is your Advertiser Detail:");
             await _responder.ReplyWith(stepContext.Context, AdvertiserResponse.ResponseIds.AdvertiserCard, advertiserDetails);
 
