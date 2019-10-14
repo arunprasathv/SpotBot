@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SpotBot.Models;
+using Newtonsoft.Json.Linq;
 
 namespace Hackathon.SpotBot
 {
@@ -26,7 +27,7 @@ namespace Hackathon.SpotBot
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-        private static IMessageActivity CreateAdvertiserCard(ITurnContext context, CAMAdvertiser advertiserDetails)
+        private static IMessageActivity CreateAdvertiserCard(ITurnContext context, string advertiserDetails)
         {
             var response = context.Activity.CreateReply();
 
@@ -51,22 +52,41 @@ namespace Hackathon.SpotBot
                        },
                 }
             });
-            
+
+            JObject o = JObject.Parse(advertiserDetails);
+
+            var childAccountId = o.SelectToken("ChildAccount").SelectToken("ChildAccountId");
+            var Name = o.SelectToken("ChildAccount").SelectToken("Name");
+            var AccountTypeId = o.SelectToken("ChildAccount").SelectToken("AccountTypeId");
+            var TIMId = o.SelectToken("ChildAccount").SelectToken("TIMId");
+            var ContactName = o.SelectToken("ChildAccount").SelectToken("ContactInformation").SelectToken("ContactName");
+            var ContactPhone = o.SelectToken("ChildAccount").SelectToken("ContactInformation").SelectToken("ContactPhone");
+
             card.Body.Add(new AdaptiveFactSet()
             {
                 Facts = new List<AdaptiveFact>()
                 {
-                    new AdaptiveFact("Account Id:", advertiserDetails.AccountID.ToString()),
-                    new AdaptiveFact("Account Name:", advertiserDetails.AccountName.ToString()),
-                    new AdaptiveFact("Account Status:", advertiserDetails.AccountStatus.ToString()),
-                    //new AdaptiveFact(" ", string.Empty),
-                    //new AdaptiveFact("Account Billing Information:",string.Empty),
-                    //new AdaptiveFact("---------------------------", string.Empty),
-                    //new AdaptiveFact(" ", string.Empty),
-                    new AdaptiveFact("Contact Name:", advertiserDetails.ContactName.ToString()),
-                    new AdaptiveFact("Contact Phone:", advertiserDetails.Phone.ToString()),
-                    new AdaptiveFact("Contact Email:", advertiserDetails.Email.ToString()),
-                    new AdaptiveFact("Address:", advertiserDetails.Address.ToString()),
+                    new AdaptiveFact("Account Id:", childAccountId.ToString()),
+                    new AdaptiveFact("Account Name:", Name.ToString()),
+                    new AdaptiveFact("Account Type:", AccountTypeId.ToString()),
+                    new AdaptiveFact("TIM Id:", TIMId.ToString()),
+                    new AdaptiveFact("Contact Name:", ContactName.ToString()),
+                    new AdaptiveFact("Contact Phone:", ContactPhone.ToString()),
+
+
+                    // Old Method Data //
+
+                    //new AdaptiveFact("Account Id:", advertiserDetails.AccountID.ToString()),
+                    //new AdaptiveFact("Account Name:", advertiserDetails.AccountName.ToString()),
+                    //new AdaptiveFact("Account Status:", advertiserDetails.AccountStatus.ToString()),
+                    ////new AdaptiveFact(" ", string.Empty),
+                    ////new AdaptiveFact("Account Billing Information:",string.Empty),
+                    ////new AdaptiveFact("---------------------------", string.Empty),
+                    ////new AdaptiveFact(" ", string.Empty),
+                    //new AdaptiveFact("Contact Name:", advertiserDetails.ContactName.ToString()),
+                    //new AdaptiveFact("Contact Phone:", advertiserDetails.Phone.ToString()),
+                    //new AdaptiveFact("Contact Email:", advertiserDetails.Email.ToString()),
+                    //new AdaptiveFact("Address:", advertiserDetails.Address.ToString()),
                 }
             });
 

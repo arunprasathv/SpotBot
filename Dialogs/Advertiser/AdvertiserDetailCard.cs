@@ -24,26 +24,27 @@ namespace Hackathon.SpotBot
 
             var checkAdvertiser = new WaterfallStep[]
             {
-                PromptForAdvertiserName,
+                PromptForAccountId,
                 ShowAdvertiserDetails
             };
 
             InitialDialogId = $"{nameof(AdvertiserDialog)}.mainFlow";
             AddDialog(new WaterfallDialog($"{nameof(AdvertiserDialog)}.mainFlow", checkAdvertiser));
-            AddDialog(new TextPrompt($"{nameof(AdvertiserDialog)}.advertiserName"));
+            AddDialog(new TextPrompt($"{nameof(AdvertiserDialog)}.accountId"));
         }
 
-        private async Task<DialogTurnResult> PromptForAdvertiserName(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PromptForAccountId(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            return await stepContext.PromptAsync($"{nameof(AdvertiserDialog)}.advertiserName", new PromptOptions
+            return await stepContext.PromptAsync($"{nameof(AdvertiserDialog)}.accountId", new PromptOptions
             {
-                Prompt = MessageFactory.Text("I am happy to help. Could you please provide Advertiser Name?")
+                Prompt = MessageFactory.Text("I am happy to help. Could you please provide Account ID?")
             }, cancellationToken);
         }
 
         private async Task<DialogTurnResult> ShowAdvertiserDetails(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        { 
-            var advertiserDetails = _client.GetAdvertiserDetails();
+        {
+            string accountId = (string) stepContext.Result;
+            var advertiserDetails = _client.GetAdvertiserDetails(accountId);
 
 
             await _responder.ReplyWith(stepContext.Context, "Thank you. Here is your Advertiser Detail:");
